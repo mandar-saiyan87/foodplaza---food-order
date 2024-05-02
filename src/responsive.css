@@ -1,0 +1,89 @@
+@media (max-width: 1600px) {}
+
+@media (max-width: 1530px) {}
+
+@media (max-width: 1440px) {}
+
+@media (max-width: 1360px) {}
+
+@media (max-width: 1280px) {}
+
+@media (max-width: 1199px) {}
+
+@media (max-width: 991px) {}
+
+@media (max-width: 768px) {
+  .nav_main {
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+  }
+
+  .nav_menu {
+    display: none;
+  }
+
+  .banner {
+    height: 30rem;
+  }
+
+  .banner_content {
+    max-width: 70%;
+    margin-top: 5rem;
+  }
+
+  .banner_content .title {
+    font-size: 2rem;
+    color: white;
+    font-weight: 600;
+  }
+
+  .banner_content .subtitle {
+    font-size: medium;
+    color: white;
+    font-weight: 500;
+    margin: 1.3rem 0;
+  }
+
+}
+
+@media (max-width: 575px) {
+  .nav-end {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .homepage_main {
+    padding: 0.5rem;
+  }
+
+  .banner {
+    height: 28rem;
+  }
+
+  .banner_content {
+    max-width: 100%;
+    margin-top: 3rem;
+  }
+
+  .banner_content .title {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+  }
+
+  .banner_content .subtitle {
+    font-size: medium;
+    color: white;
+    font-weight: 500;
+    margin: 1.3rem 0;
+  }
+
+  .bg_wrapper {
+    background-color: rgba(0, 0, 0, 0.65);
+    padding: 1rem;
+
+  }
+}
+
+@media (max-width: 375px) {}

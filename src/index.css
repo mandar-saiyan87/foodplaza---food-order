@@ -1,13 +1,233 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*********************  Default-CSS  *********************/
+:root {
+  scroll-behavior: unset;
+  --primary-color: rgb(242, 125, 36);
+  --secondary-color: rgba(28, 26, 26, 0.788);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  -webkit-text-size-adjust: none
 }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
+}
+
+body {
+  max-width: 1536px;
+  margin: auto;
+  /* font-family: 'Montserrat', sans-serif; */
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  color: var(--secondary-color);
+  background-color: #F9FAFC;
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+a,
+span,
+a:hover,
+a:active,
+button {
+  text-decoration: none;
+}
+
+a,
+div a:hover,
+div a:active,
+div a:focus,
+button {
+  text-decoration: none;
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+
+button:focus {
+  box-shadow: none !important;
+}
+
+p {
+  margin: 0;
+}
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  margin: 0;
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.row {
+  margin: 0 -15px;
+}
+
+.container {
+  padding: 0 15px;
+}
+
+.col,
+[class*=col-] {
+  padding: 0 15px;
+}
+
+.common_btn {
+  font-size: 14px;
+  text-align: center;
+  color: var(--primary-color);
+  display: inline-block;
+  border-radius: 30px;
+  background: white;
+  /* box-shadow: 0px 5px 20px rgba(59, 124, 255, 0.2); */
+  padding: 12px 24px;
+  border: 1px solid white;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.common_btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* ********************* Navbar ********************* */
+
+/* ***** LOGO ******* */
+.logo {
+  color: var(--primary-color);
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  line-height: 1.1rem;
+}
+
+.logo .prm {
+  font-size: 1.7rem;
+}
+
+.logo .sec {
+  font-size: medium;
+  display: flex;
+  align-items: baseline;
+}
+
+.logo div {
+  background-color: var(--primary-color);
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 2rem;
+}
+
+.nav_main {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem 0;
+}
+
+.nav_menu {
+  display: flex;
+  gap: 5rem;
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.nav_menu:hover {
+  color: var(--primary-color);
+}
+
+.nav-end {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.search_ico {
+  width: 1rem;
+  height: 1rem;
+}
+
+.sign_in {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.3rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 2rem;
+  border: none;
+  cursor: pointer;
+}
+
+.sign_in:hover {
+  color: var(--primary-color);
+  background-color: rgb(237, 237, 237);
+  border: 1px solid var(--primary-color);
+}
+
+/* *********** Homepage ********************************* */
+.homepage_main {
+  padding: 1rem;
+}
+
+
+.banner {
+  width: 100%;
+  height: 33.5rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 1.5rem;
+  text-align: left;
+}
+
+.banner_content {
+  max-width: 50%;
+  margin-top: 10rem;
+}
+
+.banner_content .title {
+  font-size: 2.8rem;
+  color: white;
+  font-weight: 600;
+}
+
+.banner_content .subtitle {
+  font-size: medium;
+  color: white;
+  font-weight: 500;
+  margin: 1.3rem 0;
+}
+
+.bg_wrapper {
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+/*********************  Default-CSS  End *********************/
