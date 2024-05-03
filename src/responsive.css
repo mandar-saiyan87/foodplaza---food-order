@@ -165,6 +165,57 @@
     margin: 0.5rem 0;
   }
 
+  .footer_main {
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+
+  .footer_logo .desc {
+    font-size: 0.6rem;
+    margin: 1rem 0;
+  }
+
+  .footer_main ul li {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .footer_main h5 {
+    margin-bottom: 1rem;
+  }
+
+  .git p {
+    font-size: smaller;
+  }
+
+  .email {
+    font-weight: 500;
+    margin-top: 0.2rem;
+  }
+
+  .contact {
+    font-size: 1rem;
+  }
+
+  .contact h5 {
+    margin-top: 1rem;
+  }
+
+  .social {
+    display: flex;
+    column-gap: 2rem;
+    margin: 1rem 0;
+
+  }
+
+  .social img {
+    width: 1.6rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+
 }
 
 @media (max-width: 375px) {}

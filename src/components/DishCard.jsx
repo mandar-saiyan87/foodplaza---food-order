@@ -19,7 +19,7 @@ function Dishdcard({ item }) {
   return (
     <>
       <div className='dcard'>
-        <div>
+        <div className='dcard_image'>
           <div className='prodoverlay'>
             <img src={item.image} alt={item.name} className='prodimg' />
           </div>

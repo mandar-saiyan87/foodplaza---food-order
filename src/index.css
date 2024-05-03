@@ -154,6 +154,10 @@ img {
   margin: 2rem 0;
 }
 
+.row {
+  margin: 0;
+}
+
 /* ********************* Navbar ********************* */
 
 /* ***** LOGO ******* */
@@ -234,12 +238,19 @@ img {
 .nav-end {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 2.5rem;
 }
 
 .search_ico {
   width: 1rem;
   height: 1rem;
+  cursor: pointer;
+}
+
+.shopping_bag {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
 }
 
 .sign_in {
@@ -356,7 +367,6 @@ img {
   margin: 1rem 0;
   border-radius: 0.5rem;
   color: var(--secondary-color);
-  position: relative;
   border: 1px solid rgb(220, 220, 220);
 }
 
@@ -405,9 +415,13 @@ img {
   justify-content: space-between;
 }
 
+.dcard_image {
+  position: relative;
+}
+
 .addqty {
   position: absolute;
-  top: 13.5rem;
+  bottom: 1.5rem;
   right: 0.5rem;
 }
 
@@ -431,6 +445,7 @@ img {
   align-items: center;
   justify-content: center;
   column-gap: 5rem;
+  background-color: rgb(232, 232, 232);
 }
 
 .app_links {
@@ -450,7 +465,8 @@ img {
   color: white;
 }
 
-.footer_main .desc {
+
+.footer_logo .desc {
   font-size: 0.9rem;
   margin: 1rem 0;
 }

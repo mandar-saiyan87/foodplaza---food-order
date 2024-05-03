@@ -8,7 +8,7 @@ import DishCard from '../../../components/DishCard.jsx';
 function Section3() {
   return (
     <>
-      <div className='section_main'>
+      <div id="menu" className='section_main'>
         <div className='section_desc'>
           <p className='section_title'>Top dishes near you</p>
         </div>
