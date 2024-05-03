@@ -1,6 +1,6 @@
 import React from 'react'
-import { assets } from '../../assets/assets.js'
-import Logo2 from '../../components/Logo2'
+import { assets } from '../assets/assets.js'
+import Logo2 from '../components/Logo2.jsx'
 import { Col, Row } from 'react-bootstrap'
 
 function Footer() {
