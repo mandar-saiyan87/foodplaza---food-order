@@ -220,19 +220,28 @@ img {
 }
 
 
-
-
-
-
 .nav_menu {
   display: flex;
   gap: 5rem;
-  color: var(--secondary-color);
-  cursor: pointer;
 }
 
-.nav_menu:hover {
+.nav_menu_item {
+  font-size: medium;
+  color: var(--secondary-color);
+  cursor: pointer;
+  padding: 0.1rem 0.4rem;
+}
+
+.nav_menu_item:hover {
   color: var(--primary-color);
+}
+
+.nav_menu_item_active {
+  font-size: medium;
+  color: var(--primary-color);
+  cursor: pointer;
+  border-bottom: 2px solid var(--primary-color);
+  padding: 0.1rem 0.4rem;
 }
 
 .nav-end {
@@ -270,6 +279,30 @@ img {
   color: var(--primary-color);
   background-color: rgb(237, 237, 237);
   border: 1px solid var(--primary-color);
+}
+
+/******** ERROR 404 *******************/
+.error404 {
+  min-height: 100vh;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 1.5rem;
+}
+
+.error404 .back {
+  color: white;
+  font-size: 1rem;
+  margin: 0.7rem 0;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.error404 .back span {
+  font-size: 2rem;
 }
 
 /* *********** Homepage ********************************* */
@@ -475,6 +508,7 @@ img {
 
 .footer_main ul li {
   margin-bottom: 1rem;
+  font-size: 1rem;
 }
 
 .footer_main h5 {
@@ -501,6 +535,110 @@ img {
   width: 1.6rem;
   border-radius: 0.5rem;
   cursor: pointer;
+}
+
+/************************** ABOUT PAGE ********************************/
+.about_main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  padding-top: 4rem;
+}
+
+.heading {
+  text-align: center;
+  max-width: 70%;
+}
+
+.heading .p1 {
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.heading .p2 {
+  font-size: 1rem;
+  color: white;
+  margin: 1rem 0;
+}
+
+.about_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10rem;
+}
+
+.about_div h4 {
+  font-weight: 600;
+}
+
+.about_div p {
+  margin: 1rem 0;
+  line-height: 2rem;
+  max-width: 85%;
+  color: var(--tertiary-color);
+}
+
+.about_div img {
+  width: 35rem;
+}
+
+/********************** CONTACT US ***********************************/
+.container_main {}
+
+.container_main h1 {
+  font-weight: 600;
+  margin: 3rem 0;
+}
+
+.contact_div {
+  margin: 3rem 0;
+  display: flex;
+  gap: 20rem;
+}
+
+.conatct_card {
+  margin: 1rem 0;
+  color: var(--tertiary-color);
+  font-size: 1rem;
+}
+
+.conatct_card span {
+  color: var(--primary-color);
+}
+
+.name_title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin-bottom: 0.3rem;
+}
+
+.registrar_adrs p {
+  font-size: 1rem;
+  margin: 1rem 0;
+  line-height: 1.5rem;
+}
+
+.registrar_adrs span {
+  color: var(--primary-color);
+}
+
+.corpo_adrs {
+  margin: 5rem 0;
+}
+
+.corpo_adrs h2,
+.corpo_adrsh4,
+.corpo_adrs h5 {
+  margin: 1.2rem 0;
+}
+
+.corpo_adrs p {
+  line-height: 1.7rem;
+  color: var(--tertiary-color);
 }
 
 /*********************  Default-CSS  End *********************/

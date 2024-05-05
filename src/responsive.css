@@ -166,7 +166,7 @@
   }
 
   .footer_main {
-    padding: 0.8rem;
+    padding: 1rem 0.1rem;
     background-color: var(--primary-color);
     color: white;
   }

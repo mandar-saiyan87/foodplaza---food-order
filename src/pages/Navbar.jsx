@@ -1,33 +1,36 @@
 import React from 'react'
 import Logo from '../components/Logo'
 import { assets } from "../assets/assets.js"
+import { NavLink } from 'react-router-dom'
 
 function Navbar() {
 
   const navmenu = [
     {
       name: 'Menu',
-      href: '#menu'
+      href: '/'
     },
     {
       name: 'About',
-      href: '#'
+      href: '/about'
     },
     {
-      name: 'Get App',
-      href: '#getapp'
-    }
+      name: 'Contact',
+      href: '/contact'
+    },
   ]
 
   return (
     <div className='nav_main'>
-      <Logo />
+      <NavLink to="/">
+        <Logo />
+      </NavLink>
       <ul className='nav_menu'>
         {navmenu.map((menu) => (
-          <a href={menu.href} key={menu.name}>
-            <li className='nav_menu'>{menu.name}</li>
-          </a>
-
+          <NavLink to={menu.href} key={menu.name} className={({ isActive }) =>
+            isActive ? "nav_menu_item_active" : "nav_menu_item"}>
+            <li>{menu.name}</li>
+          </NavLink>
         ))}
       </ul>
 

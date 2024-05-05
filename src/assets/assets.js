@@ -8,6 +8,10 @@ import search_icon from './search_icon.png'
 import facebook_ico from './facebook.svg'
 import twitter_ico from './twitter.svg'
 import instagram_ico from './instagram.svg'
+import delivery from './Deonbike.png'
+import instamart from './instamart.png'
+import about1 from './about1.png'
+import about2 from './about2.png'
 import menu_1 from './menu_1.png'
 import menu_2 from './menu_2.png'
 import menu_3 from './menu_3.png'
@@ -95,8 +99,11 @@ export const assets = {
     app_store2,
     facebook_ico,
     instagram_ico,
-    twitter_ico
-
+    twitter_ico,
+    delivery,
+    instamart,
+    about1,
+    about2
 }
 
 export const menu_list = [
