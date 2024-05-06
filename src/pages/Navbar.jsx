@@ -14,6 +14,8 @@ function Navbar() {
 
   const [searchDish, setSearchDish] = useState('')
 
+  const [mobileDrawer, setMobileDrawer] = useState(false)
+
 
   function closeSearch(event) {
     if (searchRef.current &&
@@ -83,13 +85,36 @@ function Navbar() {
         <button className='sign_in'>
           Sign In
         </button>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="mobile_menu">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="mobile_menu" onClick={() => setMobileDrawer(true)}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
       </div>
-      {/* <div className='mobile_menu-drawer'>
+      {mobileDrawer &&
+        <div className={`overlay ${mobileDrawer && 'overlay-show'}`} onClick={() => setMobileDrawer(false)}>
+          <div className={`mobile_menu-drawer ${mobileDrawer && 'drawer_open'}`}>
+            <div className="mobile_menu_header">
+              <Logo />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="mobile_menu_close" onClick={() => setMobileDrawer(false)}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
+            </div>
+            <div className='mobile_menu'>
+              <ul>
+                {navmenu.map(menuitem => (
+                  <NavLink to={menuitem.href} key={menuitem.name} className={({ isActive }) =>
+                    isActive ? "mobile_menu_item_active" : "mobile_menu_item"}>
+                    <li>{menuitem.name}</li>
+                  </NavLink>
+                ))}
+              </ul>
+            </div>
+            <button className='mobile_sign_in'>
+              Sign In
+            </button>
+          </div>
+        </div>
 
-      </div> */}
+      }
     </div >
   )
 }

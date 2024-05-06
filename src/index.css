@@ -317,7 +317,14 @@ img {
 
 .mobile_menu {
   display: none;
-  width: 1.5rem;
+}
+
+.mobile_menu-drawer {
+  display: none;
+}
+
+.mobile_sign_in{
+  display: none;
 }
 
 /******** ERROR 404 *******************/
