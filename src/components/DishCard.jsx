@@ -10,7 +10,7 @@ function Dishdcard({ item }) {
   }
 
   function reduceqty() {
-    if (qty != 0) {
+    if (qty !== 0) {
       setQty(qty - 1)
     }
   }
@@ -36,15 +36,15 @@ function Dishdcard({ item }) {
             <p className='dcard_title'>{item.name}</p>
             <div className='rating'>
               {item.rating ? [...Array(item.rating)].map((_, index) => (
-                <img src={assets.star_yellow} alt="rating" />
+                <img src={assets.star_yellow} alt="rating" key={index} />
               )) : [...Array(4)].map((_, index) => (
-                <img src={assets.star_black} alt="rating" />
+                <img src={assets.star_black} alt="rating" key={index} />
               ))}
             </div>
 
           </div>
           <p className='dcard_description'>{item.description}</p>
-          <p class='dcard_price'>${item.price}</p>
+          <p className='dcard_price'>${item.price}</p>
         </div>
       </div>
     </>

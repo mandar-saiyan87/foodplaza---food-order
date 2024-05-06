@@ -13,6 +13,7 @@ function Section1() {
         showArrows={false}
         showStatus={false}
         emulateTouch={true}
+        showThumbs={false}
       >
         <div className='banner' style={{ backgroundImage: `url(${assets.homepage_banner1})` }}>
           <div className='bg_wrapper'>

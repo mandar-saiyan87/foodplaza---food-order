@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets.js'
 function About() {
   return (
     <>
-      <div className='about_main '>
+      <div className='about_main'>
         <img src={assets.delivery} alt="delivery" />
         <div className='heading'>
           <p className='p1'>About FoodPlaza</p>

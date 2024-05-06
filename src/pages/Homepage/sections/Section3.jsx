@@ -1,11 +1,19 @@
-import React from 'react'
-import Container from 'react-bootstrap/Container';
+import React, { useState, useEffect } from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { food_list } from '../../../assets/assets.js'
 import DishCard from '../../../components/DishCard.jsx';
+import { useSelector } from 'react-redux';
 
 function Section3() {
+
+  const menuItems = useSelector((state) => state.menu.filterMenu.length > 0 ? state.menu.filterMenu : state.menu.menus);
+
+  const [menuList, setMenuList] = useState(menuItems)
+
+  useEffect(() => {
+    setMenuList(menuItems)
+  }, [menuItems])
+
   return (
     <>
       <div id="menu" className='section_main'>
@@ -14,7 +22,7 @@ function Section3() {
         </div>
 
         <Row xs={1} md={2} lg={3} xl={4} className='card_section'>
-          {food_list.map(item => (
+          {menuList.map(item => (
             <Col key={item._id}>
               <DishCard item={item} />
             </Col>

@@ -39,8 +39,8 @@ function Footer() {
             <h5>Get in touch</h5>
             <p>1635, Some Block<br></br>some street, some city<br></br>123456</p>
             <p>+91-9167949688</p>
-            <p class="email">someid@somedomain.com</p>
-            <div class="social">
+            <p className="email">someid@somedomain.com</p>
+            <div className="social">
               <img src={assets.facebook_ico} alt="facebook" />
               <img src={assets.instagram_ico} alt="instagram" />
               <img src={assets.twitter_ico} alt="twitter" />

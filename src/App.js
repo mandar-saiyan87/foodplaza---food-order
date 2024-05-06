@@ -6,6 +6,8 @@ import Contact from "./pages/Contact/Contact";
 import Footer from "./pages/Footer";
 import Error404 from "./pages/Error404";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { store } from "./store/store";
+import { Provider } from "react-redux";
 
 
 
@@ -37,13 +39,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    // <div className="App">
-    //   <Navbar />
-    //   <Homepage />
-    //   <RouterProvider router={router} />
-    //   <Footer />
-    // </div>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   );
 }
 
