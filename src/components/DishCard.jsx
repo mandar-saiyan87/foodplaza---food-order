@@ -1,17 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { assets } from '../assets/assets.js'
+import { useSelector, useDispatch } from 'react-redux'
+import { addtocart, removefromcart } from '../store/cartSlice.js'
 
 function Dishdcard({ item }) {
 
   const [qty, setQty] = useState(0)
 
+  const cartItems = useSelector((state) => state.cart.cartItems)
+  const dispatch = useDispatch()
+
+  const currentmenu = cartItems.find(menu => menu.menuItem._id === item._id)
+
+  useEffect(() => {
+    if (currentmenu) {
+      setQty(currentmenu.qty)
+    }
+  }, [currentmenu])
+
+
   function addQty() {
-    setQty(qty + 1)
+    setQty(prevState => prevState + 1)
+    dispatch(addtocart({ 'menuItem': item, 'qty': 1 }))
   }
 
   function reduceqty() {
     if (qty !== 0) {
-      setQty(qty - 1)
+      setQty(prevState => prevState - 1)
+      dispatch(removefromcart({ 'menuItem': item, 'qty': -1 }))
     }
   }
 

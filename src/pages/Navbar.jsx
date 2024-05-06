@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import Logo from '../components/Logo'
 import { assets } from "../assets/assets.js"
 import { NavLink } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { searchMenu } from '../store/menuSlice.js'
 
 function Navbar() {
@@ -11,6 +11,8 @@ function Navbar() {
   const searchRef = useRef(null)
 
   const dispatch = useDispatch()
+
+  const cart = useSelector((state) => state.cart.cartItems)
 
   const [searchDish, setSearchDish] = useState('')
 
@@ -81,7 +83,12 @@ function Navbar() {
             </svg>
           </div>
         </div>}
-        <img src={assets.bag_icon} alt="cart" className='shopping_bag' />
+        <NavLink to='/cart'>
+          <div className='cart_status'>
+            {cart.length > 0 && <div className='cart_added'></div>}
+            <img src={assets.bag_icon} alt="cart" className='shopping_bag' />
+          </div>
+        </NavLink>
         <button className='sign_in'>
           Sign In
         </button>
@@ -113,7 +120,6 @@ function Navbar() {
             </button>
           </div>
         </div>
-
       }
     </div >
   )
