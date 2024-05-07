@@ -9,6 +9,7 @@ import twitter_ico from './twitter.svg'
 import instagram_ico from './instagram.svg'
 import delivery from './Deonbike.png'
 import instamart from './instamart.png'
+import shield from './shield.svg'
 import about1 from './about1.png'
 import about2 from './about2.png'
 import menu_1 from './menu_1.png'
@@ -95,7 +96,8 @@ export const assets = {
     delivery,
     instamart,
     about1,
-    about2
+    about2,
+    shield
 }
 
 export const menu_list = [

@@ -71,7 +71,7 @@ function Cart() {
                 </div>
                 <div className='charges_calc'>
                   <p>delivery:</p>
-                  <p>{delivery === 0 ? 'FREE' : delivery}</p>
+                  <p>{delivery === 0 ? 'FREE' : `${delivery}`}</p>
                 </div>
               </div >
               <hr />
