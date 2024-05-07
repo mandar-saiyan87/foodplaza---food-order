@@ -725,7 +725,7 @@ img {
 .delivery_form form input {
   width: 100%;
   margin: 0.5rem 0;
-  padding: 0.2rem;
+  padding: 0.4rem;
   border: 1px solid var(--tertiary-color);
 }
 
