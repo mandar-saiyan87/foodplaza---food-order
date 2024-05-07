@@ -518,7 +518,7 @@ img {
 .manageqty {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.8rem;
   background-color: white;
   padding: 0.3rem;
   border-radius: 2rem;
@@ -692,11 +692,11 @@ img {
 
 /******************** CART PAGE *****************************/
 .cart_main {
-  margin: 2rem 0;
+  margin: 4rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5rem;
+  gap: 4rem;
 }
 
 .delivery_form {
@@ -733,22 +733,31 @@ img {
   right: 0;
 }
 
+.cart_summary {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
 .cart_item {
   max-width: 80%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  text-align: start;
   gap: 5rem;
   margin: 0.5rem 0;
   background-color: white;
   border: 1px solid lightgray;
   padding: 0.3rem 0.5rem;
   border-radius: 0.3rem;
-  font-size: 1rem;
 }
 
 .cart_item .title {
-  text-align: left;
+  text-align: start;
   width: 20rem;
 }
 
@@ -758,6 +767,30 @@ img {
 
 .cart_item .amount {
   font-weight: 500;
+}
+
+.other_charges {
+  width: 80%;
+  font-weight: 600;
+  border-top: 1px solid rgb(212, 212, 212);
+  margin: 1rem 0;
+  padding-top: 0.8rem;
+}
+
+.charges_calc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+
+.proceed_button {
+  text-align: center;
+  width: 80%;
+  background-color: var(--primary-color);
+  padding: 1rem 1.5rem;
+  border: none;
+  color: white;
 }
 
 

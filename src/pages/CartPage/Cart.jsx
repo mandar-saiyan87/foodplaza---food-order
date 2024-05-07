@@ -1,12 +1,15 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { addtocart, removefromcart } from '../../store/cartSlice'
+import { addtocart, removefromcart, cartSubtotal, deliveryFees, cartTotal } from '../../store/cartSlice'
 import { assets } from '../../assets/assets'
 
 function Cart() {
 
   const cartItems = useSelector((state) => state.cart.cartItems)
+  const calculatecartSubtotal = useSelector(cartSubtotal)
+  const delivery = useSelector(deliveryFees)
+  const finalAmount = useSelector(cartTotal)
 
   const dispatch = useDispatch()
 
@@ -42,24 +45,44 @@ function Cart() {
             <input type="number" id='phone' name='phone' placeholder='phone' />
           </form>
         </Container>
-        <Container className=''>
+        <Container className='text-center'>
           <h5>Cart Total</h5>
-          <div>
-            {cartItems.length > 0 ?
-              cartItems.map(item => (
-                <div className='cart_item' key={item.menuItem._id}>
-                  <p className='title'>{item.menuItem.name}</p>
-                  <div className='manageqty'>
-                    <img src={assets.remove_icon_red} alt="removeqty" className='dcard_ico' onClick={() => reduceqty(item.menuItem)} />
-                    <p className='qty'>{item.qty}</p>
-                    <img src={assets.add_icon_green} alt="addqty" className='dcard_ico' onClick={() => addQty(item.menuItem)} />
+          {cartItems.length > 0 ?
+            <div className='cart_summary'>
+              {
+                cartItems.map(item => (
+                  <div className='cart_item' key={item.menuItem._id} >
+                    <p className='title'>{item.menuItem.name}</p>
+                    <div className='manageqty'>
+                      <img src={assets.remove_icon_red} alt="removeqty" className='dcard_ico' onClick={() => reduceqty(item.menuItem)} />
+                      <p className='qty'>{item.qty}</p>
+                      <img src={assets.add_icon_green} alt="addqty" className='dcard_ico' onClick={() => addQty(item.menuItem)} />
+                    </div>
+                    <p className='amount'>${item.menuItem.price * item.qty}</p>
                   </div>
-                  <p className='amount'>${item.menuItem.price}</p>
-                </ div>
-              )) :
-              <div>No items added to cart</div>
-            }
-          </div>
+                ))
+              }
+              <div className='other_charges'>
+                <div className='charges_calc'>
+                  <p>Subtotal:</p>
+                  <p>${calculatecartSubtotal}</p>
+                </div>
+                <div className='charges_calc'>
+                  <p>delivery:</p>
+                  <p>{delivery === 0 ? 'FREE' : delivery}</p>
+                </div>
+              </div>
+              <div className='other_charges'>
+                <div className='charges_calc'>
+                  <p>Total:</p>
+                  <p>${finalAmount}</p>
+                </div>
+              </div>
+              <button className='proceed_button'>Proceed to Pay</button>
+            </div>
+            :
+            <div>No items addded in cart</div>
+          }
         </Container>
       </div>
     </>
@@ -73,3 +96,17 @@ export default Cart
 //                 <p>{item.qty}</p>
 //                 <p>{item.menuItem.price}</p>
 //               </ >
+
+// {
+//   cartItems.map(item => (
+//     < div className='cart_item' key={item.menuItem._id} >
+//       <p className='title'>{item.menuItem.name}</p>
+//       <div className='manageqty'>
+//         <img src={assets.remove_icon_red} alt="removeqty" className='dcard_ico' onClick={() => reduceqty(item.menuItem)} />
+//         <p className='qty'>{item.qty}</p>
+//         <img src={assets.add_icon_green} alt="addqty" className='dcard_ico' onClick={() => addQty(item.menuItem)} />
+//       </div>
+//       <p className='amount'>${item.menuItem.price * item.qty}</p>
+//     </ div >
+//   ))
+// }

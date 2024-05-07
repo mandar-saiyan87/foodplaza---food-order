@@ -1,8 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createSelector } from '@reduxjs/toolkit'
 import { food_list } from '../assets/assets.js'
 
 const initialState = {
-  cartItems: []
+  cartItems: [],
+  delivery: 15,
+  freeDelivery: 200,
 }
 
 
@@ -37,3 +39,19 @@ export const cartSlice = createSlice({
 export const { addtocart, removefromcart } = cartSlice.actions
 
 export default cartSlice.reducer
+
+export const cartSubtotal = (state) => state.cart.cartItems.reduce((price, item) => (price + item.menuItem.price * item.qty), 0)
+
+export const cartState = (state) => state.cart
+
+export const deliveryFees = createSelector(
+  cartState,
+  cartSubtotal,
+  (cart, subtotal) => subtotal < cart.freeDelivery & subtotal != 0 ? cart.delivery : 0
+)
+
+export const cartTotal = createSelector(
+  cartSubtotal,
+  deliveryFees,
+  (subtotal, delivery) => subtotal + delivery
+)
