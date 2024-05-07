@@ -1,5 +1,4 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit'
-import { food_list } from '../assets/assets.js'
 
 const initialState = {
   cartItems: [],

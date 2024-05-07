@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { addtocart, removefromcart, cartSubtotal, deliveryFees, cartTotal } from '../../store/cartSlice'
 import { assets } from '../../assets/assets'
