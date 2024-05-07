@@ -750,6 +750,12 @@ img {
 .cart_item {
   display: flex;
   align-items: center;
+  /************/
+  background-color: white;
+  padding: 0.2rem;
+  margin: 0.3rem 0;
+  border-radius: 0.3rem;
+  border: 1px solid rgb(222, 222, 222)
 }
 
 .item_info {
