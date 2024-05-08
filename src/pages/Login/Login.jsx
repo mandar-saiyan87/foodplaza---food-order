@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { assets } from '../../assets/assets'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 function Login({ showModal }) {
 
@@ -19,7 +21,12 @@ function Login({ showModal }) {
           <div className='toggle_div'>
             <div className='form_div_login'>
               <div className='login_form'>
-                <input type="text" maxLength={10} onChange={(e) => setPhone(e.target.value)} placeholder='Phone no.' />
+                {/* <input type="text" maxLength={10} onChange={(e) => setPhone(e.target.value)} placeholder='Phone no.' /> */}
+                <PhoneInput
+                  country={'us'}
+                  value={phone}
+                  onChange={phone => setPhone("+" + phone)}
+                />
                 {phone !== '' && psubmit ?
                   <input type="text" maxLength={6} onChange={() => { }} placeholder='Enter OTP' /> :
                   ''
@@ -27,7 +34,7 @@ function Login({ showModal }) {
               </div>
               {phone !== '' && psubmit ?
                 <button className='login_button'>Verify OTP</button> :
-                <button className='login_button' onClick={() => setPsubmit(true)} disabled={phone.trim() === ''}>GET OTP</button>
+                <button className='login_button' onClick={() => setPsubmit(true)} disabled={phone.length < 4}>GET OTP</button>
               }
             </div>
           </div>

@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import menuReducer from './menuSlice'
 import cartReducer from './cartSlice'
+import userReducer from './userSlice'
 
 
 const persistConfig = {
@@ -12,12 +13,14 @@ const persistConfig = {
 
 const MenuPersistedReducer = persistReducer(persistConfig, menuReducer)
 const CartPersistedReducer = persistReducer(persistConfig, cartReducer)
+const UserPersistedReducer = persistReducer(persistConfig, userReducer)
 
 
 export const store = configureStore({
   reducer: {
     'menu': MenuPersistedReducer,
-    'cart': CartPersistedReducer
+    'cart': CartPersistedReducer,
+    'user': UserPersistedReducer
   },
 })
 
