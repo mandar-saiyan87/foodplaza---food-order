@@ -1,22 +1,28 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Logo from '../components/Logo'
 import { assets } from "../assets/assets.js"
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { searchMenu } from '../store/menuSlice.js'
+import { unsetAuth } from '../store/userSlice.js'
 import Login from './Login/Login.jsx'
 
+
 function Navbar() {
+
+  const dispatch = useDispatch()
+
+  const navigate = useNavigate()
+
+  const cart = useSelector((state) => state.cart.cartItems)
+
+  const isloggedIn = useSelector((state) => state.user.token)
 
   const [showSearch, setSearch] = useState(false)
 
   const [loginModal, setLoginModal] = useState(false)
 
   const searchRef = useRef(null)
-
-  const dispatch = useDispatch()
-
-  const cart = useSelector((state) => state.cart.cartItems)
 
   const [searchDish, setSearchDish] = useState('')
 
@@ -32,12 +38,18 @@ function Navbar() {
     }
   }
 
+  function logoutUser() {
+    dispatch(unsetAuth())
+    navigate('/')
+  }
+
   useEffect(() => {
     document.addEventListener('click', closeSearch);
     return () => {
       document.removeEventListener('click', closeSearch);
     }
   })
+
 
   const navmenu = [
     {
@@ -94,9 +106,14 @@ function Navbar() {
               <img src={assets.bag_icon} alt="cart" className='shopping_bag' />
             </div>
           </NavLink>
-          <button className='sign_in' onClick={() => setLoginModal(true)}>
+          {!isloggedIn ? <button className='sign_in' onClick={() => setLoginModal(true)}>
             Sign In
-          </button>
+          </button> :
+            <div className='logout' onClick={logoutUser}>
+              <img src={assets.logout_icon} alt="logout" />
+            </div>
+          }
+
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="mobile_menu" onClick={() => setMobileDrawer(true)}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
@@ -120,14 +137,20 @@ function Navbar() {
                   ))}
                 </ul>
               </div>
-              <button className='mobile_sign_in' onClick={() => setLoginModal(true)}>
+              {!isloggedIn ? <button className='mobile_sign_in' onClick={() => setLoginModal(true)}>
                 Sign In
-              </button>
+              </button> :
+                <div className='mobile_logout' onClick={logoutUser}>
+                  <img src={assets.logout_icon} alt="logout" />
+                </div>}
+
             </div>
           </div>
         }
+        {/* <Alerts message="Please login to add products" status="Warning" /> */}
       </div >
       {loginModal && <Login showModal={setLoginModal} />}
+
 
     </>
   )

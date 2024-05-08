@@ -13,7 +13,6 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 
 
-
 const router = createBrowserRouter([
   {
     element: <div className="App">
@@ -42,6 +41,8 @@ const router = createBrowserRouter([
     errorElement: <Error404 />
   }
 ])
+
+
 
 function App() {
   return (

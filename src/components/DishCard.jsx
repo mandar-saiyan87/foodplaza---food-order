@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { assets } from '../assets/assets.js'
 import { useSelector, useDispatch } from 'react-redux'
 import { addtocart, removefromcart } from '../store/cartSlice.js'
+import Alerts from './Alerts.jsx'
 
 function Dishdcard({ item }) {
 
   const [qty, setQty] = useState(0)
+  const [showWarning, setWarning] = useState(false)
 
   const cartItems = useSelector((state) => state.cart.cartItems)
+  const token = useSelector((state) => state.user.token)
   const dispatch = useDispatch()
 
   const currentmenu = cartItems.find(menu => menu.menuItem._id === item._id)
@@ -20,8 +23,16 @@ function Dishdcard({ item }) {
 
 
   function addQty() {
-    setQty(prevState => prevState + 1)
-    dispatch(addtocart({ 'menuItem': item, 'qty': 1 }))
+    if (!token) {
+      setWarning(true)
+      setTimeout(() => {
+        setWarning(false)
+      }, 2000);
+    } else {
+      setQty(prevState => prevState + 1)
+      dispatch(addtocart({ 'menuItem': item, 'qty': 1 }))
+    }
+
   }
 
   function reduceqty() {
@@ -34,6 +45,7 @@ function Dishdcard({ item }) {
 
   return (
     <>
+      {showWarning && <Alerts message="Please login to add to cart" status="Warning" />}
       <div className='dcard'>
         <div className='dcard_image'>
           <div className='prodoverlay'>

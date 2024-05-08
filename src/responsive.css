@@ -26,6 +26,15 @@
     display: none
   }
 
+  .logout {
+    display: none;
+  }
+
+  .mobile_logout {
+    display: flex;
+    margin: 0 1rem;
+  }
+
   .mobile_menu {
     display: flex;
     width: 1.5rem;
