@@ -158,6 +158,18 @@ img {
   margin: 0;
 }
 
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.loading img {
+  width: 7rem;
+}
+
 /* ********************* Navbar ********************* */
 
 /* ***** LOGO ******* */
@@ -493,6 +505,7 @@ img {
   border-radius: 0.5rem;
   color: var(--secondary-color);
   border: 1px solid rgb(220, 220, 220);
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
 
@@ -521,7 +534,10 @@ img {
   font-size: 0.8rem;
   margin: 0.5rem 0;
   color: var(--tertiary-color);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .dcard_price {
@@ -892,6 +908,71 @@ img {
   margin: 1rem 0;
   padding: 0.5rem 0;
   text-align: center;
+}
+
+/***************** Menu Details Page ***************************/
+.menu_maindiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.menu_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 80%;
+}
+
+.menu_content .menu_img {
+  width: 30rem;
+}
+
+.menu_heading {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1.2rem 0;
+}
+
+.title_main .title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.title_main img {
+  width: 1.3rem;
+}
+
+.prepTime {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.timerimg {
+  width: 2rem;
+  stroke: var(--primary-color);
+}
+
+.menu_heading .price{
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  letter-spacing: 2px;
+}
+
+.menu_description {
+  margin: 1.5rem 0;
+  font-size: 1rem;
+  word-spacing: 2px;
 }
 
 /*********************  Default-CSS  End *********************/

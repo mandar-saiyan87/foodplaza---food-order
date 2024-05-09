@@ -4,6 +4,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Cart from "./pages/CartPage/Cart";
+import MenuDetails from "./pages/MenuDetails/MenuDetails";
 import Footer from "./pages/Footer";
 import Error404 from "./pages/Error404";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart />
+      },
+      {
+        path: '/menu/:id',
+        element: <MenuDetails />
       },
     ],
     errorElement: <Error404 />

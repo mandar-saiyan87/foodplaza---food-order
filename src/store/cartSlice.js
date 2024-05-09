@@ -46,7 +46,7 @@ export const cartState = (state) => state.cart
 export const deliveryFees = createSelector(
   cartState,
   cartSubtotal,
-  (cart, subtotal) => subtotal < cart.freeDelivery & subtotal != 0 ? cart.delivery : 0
+  (cart, subtotal) => subtotal < cart.freeDelivery & subtotal !== 0 ? cart.delivery : 0
 )
 
 export const cartTotal = createSelector(

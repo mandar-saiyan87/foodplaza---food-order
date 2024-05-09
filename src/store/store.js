@@ -20,7 +20,7 @@ export const store = configureStore({
   reducer: {
     'menu': MenuPersistedReducer,
     'cart': CartPersistedReducer,
-    'user': UserPersistedReducer
+    'user': UserPersistedReducer,
   },
 })
 
