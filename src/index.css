@@ -921,21 +921,21 @@ img {
 .menu_content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: start;
   max-width: 80%;
 }
 
 .menu_content .menu_img {
-  width: 30rem;
+  width: 50%;
 }
 
 .menu_heading {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  margin: 1.2rem 0;
+  justify-content: start;
+  gap: 10rem;
+  margin: 1.5rem 0;
 }
 
 .title_main .title {
@@ -962,7 +962,7 @@ img {
   stroke: var(--primary-color);
 }
 
-.menu_heading .price{
+.menu_heading .price {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--primary-color);
