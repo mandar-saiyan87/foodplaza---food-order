@@ -5,6 +5,7 @@ import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Cart from "./pages/CartPage/Cart";
 import MenuDetails from "./pages/MenuDetails/MenuDetails";
+import Admin from "./pages/AdminPage/Admin";
 import Footer from "./pages/Footer";
 import Error404 from "./pages/Error404";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
@@ -16,6 +17,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 const router = createBrowserRouter([
   {
+    path: '/',
     element: <div className="App">
       <Navbar />
       <Outlet />
@@ -43,6 +45,13 @@ const router = createBrowserRouter([
         element: <MenuDetails />
       },
     ],
+    errorElement: <Error404 />
+  },
+  {
+    path: '/admin',
+    element: <div className="App">
+      <Admin/>
+    </div>,
     errorElement: <Error404 />
   }
 ])

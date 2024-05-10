@@ -23,7 +23,8 @@ function Dishdcard({ item }) {
   }, [currentmenu])
 
 
-  function addQty() {
+  function addQty(e) {
+    e.stopPropagation()
     if (!token) {
       setWarning(true)
       setTimeout(() => {
@@ -36,7 +37,8 @@ function Dishdcard({ item }) {
 
   }
 
-  function reduceqty() {
+  function reduceqty(e) {
+    e.stopPropagation()
     if (qty !== 0) {
       setQty(prevState => prevState - 1)
       dispatch(removefromcart({ 'menuItem': item, 'qty': -1 }))
@@ -47,20 +49,21 @@ function Dishdcard({ item }) {
   return (
     <>
       {showWarning && <Alerts message="Please login to add to cart" status="Warning" />}
-      <Link to={`/menu/${item._id}`}>
-        <div className='dcard'>
-          <div className='dcard_image'>
-            <div className='prodoverlay'>
-              <img src={item.image} alt={item.name} className='prodimg' />
-            </div>
-            <div className='addqty'>
-              {qty > 0 ? <div className='manageqty'>
-                <img src={assets.remove_icon_red} alt="removeqty" className='dcard_ico' onClick={reduceqty} />
-                <p>{qty}</p>
-                <img src={assets.add_icon_green} alt="addqty" className='dcard_ico' onClick={addQty} />
-              </div> : <img src={assets.add_icon_white} alt="addicon" className='dcard_ico' onClick={addQty} />}
-            </div>
+
+      <div className='dcard'>
+        <div className='dcard_image'>
+          <div className='prodoverlay'>
+            <img src={item.image} alt={item.name} className='prodimg' />
           </div>
+          <div className='addqty'>
+            {qty > 0 ? <div className='manageqty'>
+              <img src={assets.remove_icon_red} alt="removeqty" className='dcard_ico' onClick={reduceqty} />
+              <p>{qty}</p>
+              <img src={assets.add_icon_green} alt="addqty" className='dcard_ico' onClick={addQty} />
+            </div> : <img src={assets.add_icon_white} alt="addicon" className='dcard_ico' onClick={addQty} />}
+          </div>
+        </div>
+        <Link to={`/menu/${item._id}`}>
           <div className="dcard_details">
             <div className='dcard_heading'>
               <p className='dcard_title'>{item.name}</p>
@@ -76,8 +79,8 @@ function Dishdcard({ item }) {
             <p className='dcard_description'>{item.description}</p>
             <p className='dcard_price'>${item.price}</p>
           </div>
-        </div>
-      </Link>
+        </Link >
+      </div>
     </>
   )
 }
