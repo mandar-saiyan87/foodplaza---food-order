@@ -23,7 +23,7 @@ body {
   margin: auto;
   /* font-family: 'Montserrat', sans-serif; */
   font-family: "Poppins", sans-serif;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   color: var(--secondary-color);
   background-color: #F9FAFC;
   font-size: 18px;
@@ -325,6 +325,25 @@ img {
   color: var(--primary-color);
   background-color: white;
   border: 1px solid var(--primary-color);
+}
+
+.close_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  padding: 0.8rem 1.3rem;
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 2rem;
+  border: none;
+  cursor: pointer;
+}
+
+.close_button:hover {
+  color: var(--secondary-color);
+  background-color: white;
+  border: 1px solid var(--secondary-color);
 }
 
 .logout {
@@ -977,7 +996,10 @@ img {
 }
 
 /************************ Admin Page ***********************/
-
+.admin_main {
+  width: 1536px;
+  overflow-x: scroll;
+}
 
 .admin_header {
   display: flex;
@@ -998,20 +1020,19 @@ img {
 }
 
 .admin_menu {
+  width: 100%;
   height: 100vh;
   display: flex;
-  font-size: 1rem;
-  border-left: 2px solid var(--tertiary-color);
-  border-right: 2px solid var(--tertiary-color);
-  border-bottom: 2px solid var(--tertiary-color);
 }
 
-.admin_menu_tab {
+.admin_menu_tabs {
   width: 20%;
-  border-right: 2px solid var(--tertiary-color);
   display: flex;
   flex-direction: column;
   align-items: end;
+  border-left: 2px solid var(--tertiary-color);
+  border-right: 2px solid var(--tertiary-color);
+  border-bottom: 2px solid var(--tertiary-color);
 }
 
 .admin_menu_options {
@@ -1041,14 +1062,65 @@ img {
   background-color: var(--primary-color);
 }
 
-/******************** Categories Admin Panel *******************/
-
-.admin_main {
-  overflow-x: scroll;
+.admin_current_menu {
+  width: 80%;
+  border-right: 2px solid var(--tertiary-color);
+  border-bottom: 2px solid var(--tertiary-color);
 }
+
+/******************** Categories Admin Panel *******************/
 
 .categories_main {
   padding: 1.5rem;
+}
+
+.category_div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+
+.admin_cat_card {
+  display: flex;
+  border: 1px solid var(--tertiary-color);
+  border-radius: 0.2rem;
+  max-width: max-content;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+  align-items: center;
+  /* box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1) */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.admin_cat_card:hover {
+  transform: scale(1.04);
+}
+
+
+.admin_catcard_title {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.admin_catcard_title img {
+  width: 4rem;
+}
+
+.input_wrapper input {
+  width: 100%;
+  margin: 0.5rem 0;
+  outline: none;
+  border: 1px solid var(--tertiary-color);
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  font-size: 0.9rem;
 }
 
 /*********************  Default-CSS  End *********************/

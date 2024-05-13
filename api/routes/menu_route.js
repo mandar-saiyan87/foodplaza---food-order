@@ -40,7 +40,7 @@ router.post('/addcategory', async (req, res) => {
       cat_img: cat_img
     })
     const newCat = await newCategory.save()
-    res.status(201).json(newCat._id)
+    res.status(201).json(newCat)
   } catch (error) {
     console.error(error)
     return res.status(500).send('Internal server error')

@@ -3,10 +3,12 @@ import Logo from '../../components/Logo'
 import { assets } from '../../assets/assets'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 
+
 const Admin = () => {
 
   const currenturl = useLocation()
   const navigate = useNavigate()
+
 
   const adminMenu = [
     {
@@ -46,7 +48,7 @@ const Admin = () => {
           </div>
         </div>
         <div className="admin_menu">
-          <div className='admin_menu_tab'>
+          <div className='admin_menu_tabs'>
             {adminMenu.map((item) => (
               <NavLink to={item.route} key={item.name} className={({ isActive }) =>
                 isActive ? "admin_menu_options_active" : "admin_menu_options"
@@ -60,7 +62,6 @@ const Admin = () => {
           </div>
         </div>
       </div>
-
     </>
   )
 }

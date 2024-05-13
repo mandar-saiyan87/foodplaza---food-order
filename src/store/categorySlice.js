@@ -15,6 +15,21 @@ export const getCategories = createAsyncThunk('getCategories', async () => {
   return data
 })
 
+export const addNew = createAsyncThunk('addnew', async (newcat) => {
+  const newCategory = {
+    category: newcat.title,
+    cat_img: newcat.imgUrl
+  }
+  // console.log(newCategory)
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/menu/addcategory`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newCategory)
+  })
+  const data = await req.json()
+  return data
+})
+
 export const categorySlice = createSlice({
   name: 'categories',
   initialState,
@@ -28,6 +43,17 @@ export const categorySlice = createSlice({
         state.categories = action.payload
       })
       .addCase(getCategories.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error
+      })
+    builder.addCase(addNew.pending, (state) => {
+      state.loading = true
+    })
+      .addCase(addNew.fulfilled, (state, action) => {
+        state.loading = false
+        state.categories.push(action.payload)
+      })
+      .addCase(addNew.rejected, (state, action) => {
         state.loading = false
         state.error = action.error
       })
