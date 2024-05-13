@@ -1,5 +1,6 @@
 import express from "express";
 import Category from "../models/Category.js";
+import Menus from "../models/Menu.js"
 
 
 const router = express.Router()
@@ -62,8 +63,18 @@ router.delete('/deletecategory/:id', async (req, res) => {
 })
 
 router.get('/allmenu', async (req, res) => {
-  console.log('Get all menu route')
-  return res.status(200).json({ "code": 200, "status": "All menu route working" })
+  // console.log('Get all menu route')
+  try {
+    const allmenu = Menus.find()
+    if (allmenu.length > 0) {
+      return res.status(200).json(allmenu)
+    } else { 
+      return res.status(200).send('No items in menu')
+    }
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send('Internal server error')
+  }
 })
 
 export default router;
