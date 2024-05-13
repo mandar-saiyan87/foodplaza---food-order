@@ -36,8 +36,6 @@ function Login({ showModal }) {
     } catch (error) {
       console.error(error)
     }
-
-
   }
 
   async function verifyOtp() {
