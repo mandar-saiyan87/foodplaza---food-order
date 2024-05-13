@@ -10,6 +10,8 @@ const CategorySection = () => {
 
   const catagories = useSelector((state) => state.categories.categories)
 
+  console.log(catagories)
+
   const [imgUrl, setImgurl] = useState('')
   const [title, settitle] = useState('')
 
@@ -26,7 +28,7 @@ const CategorySection = () => {
     handleClose()
   }
 
-  function deleteCategory(id) { 
+  function deleteCategory(id) {
     dispatch(deleteCat(id))
   }
 
