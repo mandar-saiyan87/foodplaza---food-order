@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { menu_list } from '../../../assets/assets.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { filterbyCategoty } from '../../../store/menuSlice.js';
+import { getCategories } from '../../../store/categorySlice.js';
 
 function Section2() {
 
@@ -12,6 +13,10 @@ function Section2() {
   function handleFilter(category) {
     dispatch(filterbyCategoty(category))
   }
+
+  useEffect(() => {
+    dispatch(getCategories())
+  }, [dispatch])
 
   return (
     <>

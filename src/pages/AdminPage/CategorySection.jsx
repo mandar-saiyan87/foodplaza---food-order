@@ -10,7 +10,7 @@ const CategorySection = () => {
 
   const catagories = useSelector((state) => state.categories.categories)
 
-  console.log(catagories)
+  // console.log(catagories)
 
   const [imgUrl, setImgurl] = useState('')
   const [title, settitle] = useState('')
