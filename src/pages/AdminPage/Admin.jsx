@@ -31,7 +31,7 @@ const Admin = () => {
 
   useEffect(() => {
     if (currenturl.pathname === '/admin') {
-      navigate('admin/Categories')
+      navigate('/Categories')
     }
   }, [currenturl])
 
