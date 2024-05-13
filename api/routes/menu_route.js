@@ -7,7 +7,7 @@ const router = express.Router()
 // Get all categories
 
 router.get('', (req, res) => {
-  return res.status(200).send('Menu route working')
+  return res.status(200).json({ "code": 200, "status": "Route woking" })
 })
 
 router.get('/getcategories', async (req, res) => {
