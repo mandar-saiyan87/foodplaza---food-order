@@ -77,4 +77,8 @@ router.get('/allmenu', async (req, res) => {
   }
 })
 
+router.post('/addmenuitem', async (req, res) => { 
+  
+})
+
 export default router;
