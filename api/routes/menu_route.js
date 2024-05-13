@@ -47,4 +47,18 @@ router.post('/addcategory', async (req, res) => {
   }
 })
 
+router.delete('/deletecategory/:id', async (req, res) => {
+  const delId = req.params.id
+  try {
+    let delCat = await Category.findOneAndDelete({ _id: delId })
+    if (delCat) {
+      return res.status(200).json(delCat._id)
+    }
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send('Internal server error')
+  }
+
+})
+
 export default router;

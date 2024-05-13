@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux"
-import { getCategories, addNew } from '../../store/categorySlice'
+import { getCategories, addNew, deleteCat } from '../../store/categorySlice'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -26,6 +26,10 @@ const CategorySection = () => {
     handleClose()
   }
 
+  function deleteCategory(id) { 
+    dispatch(deleteCat(id))
+  }
+
 
   useEffect(() => {
     dispatch(getCategories())
@@ -38,17 +42,22 @@ const CategorySection = () => {
         <div className='category_div'>
           {
             catagories.map((cat) => (
-              <div className='admin_cat_card'>
-                <div key={cat._id} className='admin_catcard_title'>
-                  <img src={cat.cat_img} alt="category_image" />
-                  {cat.category}
+              <div className='admin_cat_card' key={cat._id}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="close_img" onClick={() => deleteCategory(cat._id)}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+                <div className='admin_card_content'>
+                  <div className='admin_catcard_title'>
+                    <img src={cat.cat_img} alt="category_image" />
+                    {cat.category}
+                  </div>
+                  <p></p>
                 </div>
-                <p></p>
               </div>
             ))
           }
         </div>
-      </div>
+      </div >
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add New Category</Modal.Title>

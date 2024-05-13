@@ -1083,6 +1083,7 @@ img {
 
 .admin_cat_card {
   display: flex;
+  flex-direction: column;
   border: 1px solid var(--tertiary-color);
   border-radius: 0.2rem;
   max-width: max-content;
@@ -1100,6 +1101,15 @@ img {
 
 .admin_cat_card:hover {
   transform: scale(1.04);
+}
+
+.admin_card_content {
+  display: flex;
+}
+
+.close_img {
+  width: 1.2rem;
+  align-self: self-end;
 }
 
 

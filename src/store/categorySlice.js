@@ -30,6 +30,15 @@ export const addNew = createAsyncThunk('addnew', async (newcat) => {
   return data
 })
 
+export const deleteCat = createAsyncThunk('deleteCat', async (id) => {
+  // console.log(id)
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/menu/deletecategory/${id}`, {
+    method: 'DELETE'
+  })
+  const data = await req.json()
+  return data
+})
+
 export const categorySlice = createSlice({
   name: 'categories',
   initialState,
@@ -54,6 +63,18 @@ export const categorySlice = createSlice({
         state.categories.push(action.payload)
       })
       .addCase(addNew.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error
+      })
+    builder.addCase(deleteCat.pending, (state) => {
+      state.loading = true
+    })
+      .addCase(deleteCat.fulfilled, (state, action) => {
+        state.loading = false
+        // console.log(action.payload)
+        state.categories = state.categories.filter(category => category._id != action.payload)
+      })
+      .addCase(deleteCat.rejected, (state, action) => {
         state.loading = false
         state.error = action.error
       })
