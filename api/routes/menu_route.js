@@ -61,4 +61,9 @@ router.delete('/deletecategory/:id', async (req, res) => {
 
 })
 
+router.get('/allmenu', async (req, res) => {
+  console.log('Get all menu route')
+  return res.status(200).json({ "code": 200, "status": "All menu route working" })
+})
+
 export default router;
