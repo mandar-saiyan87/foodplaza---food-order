@@ -7,6 +7,10 @@ import Cart from "./pages/CartPage/Cart";
 import MenuDetails from "./pages/MenuDetails/MenuDetails";
 import Admin from "./pages/AdminPage/Admin";
 import Footer from "./pages/Footer";
+import CategorySection from "./pages/AdminPage/CategorySection";
+import AddmenuSection from "./pages/AdminPage/AddmenuSection";
+import MenuItemSection from "./pages/AdminPage/MenuItemSection";
+import OrdersSection from "./pages/AdminPage/OrdersSection";
 import Error404 from "./pages/Error404";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { store, persistor } from "./store/store";
@@ -50,8 +54,26 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element: <div className="App">
-      <Admin/>
+      <Admin />
     </div>,
+    children: [
+      {
+        path: '/admin/Categories',
+        element: <CategorySection />
+      },
+      {
+        path: '/admin/MenuItems',
+        element: <MenuItemSection />
+      },
+      {
+        path: '/admin/AddItem',
+        element: <AddmenuSection />
+      },
+      {
+        path: '/admin/Orders',
+        element: <OrdersSection />
+      },
+    ],
     errorElement: <Error404 />
   }
 ])
