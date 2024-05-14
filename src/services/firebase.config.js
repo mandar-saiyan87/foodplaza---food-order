@@ -5,7 +5,7 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCW-e5VeqssOtjG7h8NXwPAqYggZDGs37M",
+  apiKey: `${process.env.REACT_APP_FIREBASE_API}`,
   authDomain: "foodplaza-4f4b7.firebaseapp.com",
   projectId: "foodplaza-4f4b7",
   storageBucket: "foodplaza-4f4b7.appspot.com",

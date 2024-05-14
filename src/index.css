@@ -1138,4 +1138,22 @@ img {
   font-size: 0.9rem;
 }
 
+.addmenu_main {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.addmenu_main input,
+textarea {
+  width: 60%;
+  margin: 0.5rem 0;
+  outline: none;
+  border: 1px solid var(--tertiary-color);
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  font-size: 0.9rem;
+}
+
 /*********************  Default-CSS  End *********************/
