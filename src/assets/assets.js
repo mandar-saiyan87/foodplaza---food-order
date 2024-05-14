@@ -362,10 +362,10 @@ Duis at euismod dolor. Praesent iaculis id tellus ac pulvinar. Ut non sapien sit
         category: "Cake"
     }, {
         _id: "21",
-        name: "Garlic Mushroom ",
+        name: "Garlic Mushroom",
         image: food_21,
         price: 14,
-        prepTime: 'Ready',
+        prepTime: '15 min',
         rating: 4,
         description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper quis ex id interdum. In congue massa non ligula lobortis sollicitudin. Proin libero justo, tempus eu neque sed, pretium tempor odio. Fusce placerat sem eu magna elementum imperdiet. Ut ut interdum ex. Pellentesque id quam nunc. Maecenas ultricies aliquam turpis, nec suscipit risus placerat vitae. Aliquam eget magna dictum, blandit urna at, bibendum libero. Suspendisse eget magna purus. Sed porta erat non ornare lacinia. Nunc tincidunt justo leo, ac placerat tellus maximus a. Praesent ut iaculis dui. Etiam cursus euismod imperdiet. Mauris commodo dui et laoreet cursus.
 Aliquam id dolor id magna fringilla accumsan vel bibendum felis. <br></br>Maecenas finibus nisi nec erat ullamcorper, sit amet aliquet urna volutpat. Quisque sollicitudin posuere condimentum. <br/>Maecenas blandit finibus est, a placerat enim auctor id. Aliquam vitae magna quis libero pretium congue. Nunc fringilla eget ex ut maximus. Nunc luctus erat in lectus pulvinar sollicitudin. Maecenas lobortis sed lectus vitae pharetra. Suspendisse potenti. Nam facilisis at dui at facilisis. Ut ut posuere lectus.
@@ -414,7 +414,7 @@ Duis at euismod dolor. Praesent iaculis id tellus ac pulvinar. Ut non sapien sit
         rating: 4,
         description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper quis ex id interdum. In congue massa non ligula lobortis sollicitudin. Proin libero justo, tempus eu neque sed, pretium tempor odio. Fusce placerat sem eu magna elementum imperdiet. Ut ut interdum ex. Pellentesque id quam nunc. Maecenas ultricies aliquam turpis, nec suscipit risus placerat vitae. Aliquam eget magna dictum, blandit urna at, bibendum libero. Suspendisse eget magna purus. Sed porta erat non ornare lacinia. Nunc tincidunt justo leo, ac placerat tellus maximus a. Praesent ut iaculis dui. Etiam cursus euismod imperdiet. Mauris commodo dui et laoreet cursus.
 Aliquam id dolor id magna fringilla accumsan vel bibendum felis. <br></br>Maecenas finibus nisi nec erat ullamcorper, sit amet aliquet urna volutpat. Quisque sollicitudin posuere condimentum. <br/>Maecenas blandit finibus est, a placerat enim auctor id. Aliquam vitae magna quis libero pretium congue. Nunc fringilla eget ex ut maximus. Nunc luctus erat in lectus pulvinar sollicitudin. Maecenas lobortis sed lectus vitae pharetra. Suspendisse potenti. Nam facilisis at dui at facilisis. Ut ut posuere lectus.
-Duis at euismod dolor. Praesent iaculis id tellus ac pulvinar. Ut non sapien sit amet leo pellentesque porta. Fusce placerat interdum justo sed suscipit. Integer tincidunt metus ac nibh sollicitudin, eget.`,
+    Duis at euismod dolor. Praesent iaculis id tellus ac pulvinar. Ut non sapien sit amet leo pellentesque porta. Fusce placerat interdum justo sed suscipit. Integer tincidunt metus ac nibh sollicitudin, eget.`,
         category: "Pasta"
     },
     {

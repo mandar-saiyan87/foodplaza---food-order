@@ -7,9 +7,11 @@ import { getallmenu } from '../../../store/menuSlice.js';
 
 function Section3() {
 
-  const menuItems = useSelector((state) => state.menu.filterMenu.length > 0 ? state.menu.filterMenu : state.menu.menus);
 
   const dispatch = useDispatch()
+
+  const menuItems = useSelector((state) => state.menu.filterMenu.length > 0 ? state.menu.filterMenu : state.menu.menus);
+
   // console.log(menuItems)
 
   // const [menuList, setMenuList] = useState(menuItems)

@@ -27,7 +27,7 @@ function Section2() {
         </div>
         <div className='menu_list'>
           {categories.map(item => (
-            <div className='menu_list_item' key={item._id} onClick={() => handleFilter(item.category)}>
+            <div className='menu_list_item' key={item._id} onClick={() => handleFilter(item._id)}>
               <div style={{ backgroundImage: `url(${item.cat_img})` }} className='menu_list_image'></div>
               <p>{item.category}</p>
             </div>

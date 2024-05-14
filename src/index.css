@@ -534,6 +534,7 @@ img {
 
 .prodimg {
   width: 100%;
+  height: 270px;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
 }
@@ -1093,7 +1094,6 @@ img {
   font-size: 0.9rem;
   margin: 1rem 0;
   align-items: center;
-  /* box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1) */
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1),
     0 2px 4px rgba(0, 0, 0, 0.1),
     0 4px 8px rgba(0, 0, 0, 0.1);
@@ -1175,5 +1175,49 @@ select {
   flex-direction: column;
   padding: 2rem;
 }
+
+.menuitem_card {
+  max-width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 7rem;
+  margin: 0.8rem 0;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--tertiary-color);
+  border-radius: 0.2rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.menuitem_title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.menuitem_title img {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 3rem;
+}
+
+.ico_div {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.delete_ico {
+  width: 1.5rem;
+  cursor: pointer;
+}
+
+.edit_ico {
+  width: 1.5rem;
+  cursor: pointer;
+}
+
 
 /*********************  Default-CSS  End *********************/

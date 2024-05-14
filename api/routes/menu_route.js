@@ -5,12 +5,12 @@ import Menus from "../models/Menu.js"
 
 const router = express.Router()
 
-// Get all categories
-
+// Test route
 router.get('', (req, res) => {
   return res.status(200).json({ "code": 200, "status": "Route woking" })
 })
 
+// Get all categories
 router.get('/getcategories', async (req, res) => {
   try {
     const catList = await Category.find()
@@ -48,6 +48,7 @@ router.post('/addcategory', async (req, res) => {
   }
 })
 
+// Delete Category
 router.delete('/deletecategory/:id', async (req, res) => {
   const delId = req.params.id
   try {
@@ -62,6 +63,7 @@ router.delete('/deletecategory/:id', async (req, res) => {
 
 })
 
+// Get all menu item
 router.get('/allmenu', async (req, res) => {
   // console.log('Get all menu route')
   try {
@@ -77,6 +79,7 @@ router.get('/allmenu', async (req, res) => {
   }
 })
 
+// Add new menu item
 router.post('/addmenuitem', async (req, res) => {
   const { title, ratings, image, price, prepTime, description, category } = req.body
   try {
@@ -95,6 +98,20 @@ router.post('/addmenuitem', async (req, res) => {
     return res.status(500).send('Internal server error')
   }
 
+})
+
+// Delete menu item
+router.delete('/deletemenuitem/:id', async (req, res) => {
+  const delId = req.params.id
+  try {
+    let delMenu = await Menus.findOneAndDelete({ _id: delId })
+    if (delMenu) {
+      return res.status(200).json(delMenu._id)
+    }
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send('Internal server error')
+  }
 })
 
 export default router;

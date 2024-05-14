@@ -27,6 +27,15 @@ export const addmenuitem = createAsyncThunk('addmenuitem', async (menuitem) => {
   return data
 })
 
+export const deletemenu = createAsyncThunk('deletemenu', async (id) => {
+  // console.log(id)
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/menu/deletemenuitem/${id}`, {
+    method: 'DELETE'
+  })
+  const data = await req.json()
+  return data
+})
+
 export const menuSlice = createSlice({
   name: 'menu',
   initialState,
@@ -49,7 +58,7 @@ export const menuSlice = createSlice({
       if (!search || search === '') {
         state.filterMenu = []
       } else {
-        state.filterMenu = state.menus.filter(menu => menu.name.toLowerCase().includes(search.toLowerCase()))
+        state.filterMenu = state.menus.filter(menu => menu.title.toLowerCase().includes(search.toLowerCase()))
         // console.log(state.filterMenu)
       }
     }
@@ -78,6 +87,18 @@ export const menuSlice = createSlice({
       .addCase(addmenuitem.rejected, (state, action) => {
         state.loading = false
         state.error = action.payload
+      })
+    builder.addCase(deletemenu.pending, (state) => {
+      state.loading = true
+    })
+      .addCase(deletemenu.fulfilled, (state, action) => {
+        state.loading = false
+        // console.log(action.payload)
+        state.menus = state.menus.filter(menu => menu._id != action.payload)
+      })
+      .addCase(deletemenu.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error
       })
   }
 })
