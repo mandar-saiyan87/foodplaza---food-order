@@ -76,7 +76,7 @@ const CategorySection = () => {
           <Button className='close_button' onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" className='sign_in' onClick={submitCategory}>
+          <Button  className='sign_in' onClick={submitCategory}>
             Add New
           </Button>
         </Modal.Footer>
