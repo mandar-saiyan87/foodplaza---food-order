@@ -50,7 +50,8 @@ const CategorySection = () => {
                 </svg>
                 <div className='admin_card_content'>
                   <div className='admin_catcard_title'>
-                    <img src={cat.cat_img} alt="category_image" />
+                    <div style={{ backgroundImage: `url(${cat.cat_img})` }} className='catcard_title'>
+                    </div>
                     {cat.category}
                   </div>
                   <p></p>

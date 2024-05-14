@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { menu_list } from '../../../assets/assets.js'
+// import { menu_list } from '../../../assets/assets.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { filterbyCategoty } from '../../../store/menuSlice.js';
 import { getCategories } from '../../../store/categorySlice.js';

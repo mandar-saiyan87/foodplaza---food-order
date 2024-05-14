@@ -508,7 +508,7 @@ img {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  border-radius: 2rem;
+  border-radius: 3.2rem;
   cursor: pointer;
 }
 
@@ -1119,8 +1119,13 @@ img {
   align-items: center;
 }
 
-.admin_catcard_title img {
-  width: 4rem;
+.catcard_title {
+  width: 5.5rem;
+  height: 5.5rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 3.2rem;
 }
 
 .input_wrapper input {
