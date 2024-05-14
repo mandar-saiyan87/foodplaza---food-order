@@ -1,12 +1,31 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { food_list } from '../assets/assets.js'
 
 
 const initialState = {
-  menus: food_list,
+  menus: [],
   filterMenu: [],
-  selectedcategory: null
+  selectedcategory: null,
+  loading: false,
+  error: null
 }
+
+export const getallmenu = createAsyncThunk('getallmenu', async () => {
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/menu/allmenu`)
+  const data = await req.json()
+  // console.log(data)
+  return data
+})
+
+export const addmenuitem = createAsyncThunk('addmenuitem', async (menuitem) => {
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/menu/addmenuitem`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(menuitem)
+  })
+  const data = await req.json()
+  return data
+})
 
 export const menuSlice = createSlice({
   name: 'menu',
@@ -34,6 +53,32 @@ export const menuSlice = createSlice({
         // console.log(state.filterMenu)
       }
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getallmenu.pending, (state) => {
+      state.loading = true
+    })
+      .addCase(getallmenu.fulfilled, (state, action) => {
+        state.loading = false
+        // console.log(action.payload)
+        state.menus = action.payload
+      })
+      .addCase(getallmenu.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error
+      })
+    builder.addCase(addmenuitem.pending, (state) => {
+      state.loading = true
+    })
+      .addCase(addmenuitem.fulfilled, (state, action) => {
+        state.loading = false
+        // console.log(action.payload)
+        state.menus.push(action.payload)
+      })
+      .addCase(addmenuitem.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload
+      })
   }
 })
 

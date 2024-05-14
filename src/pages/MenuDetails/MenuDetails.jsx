@@ -23,10 +23,10 @@ const MenuDetails = () => {
             <img src={menuItem.image} alt="menuimage" className='menu_img' />
             <div className='menu_heading'>
               <div className='title_main'>
-                <p className='title'>{menuItem.name}</p>
+                <p className='title'>{menuItem.title}</p>
                 <div className='rating'>
-                  {menuItem.rating ?
-                    [...Array(menuItem.rating)].map((_, index) => (
+                  {menuItem.ratings ?
+                    [...Array(menuItem.ratings)].map((_, index) => (
                       <img src={assets.star_yellow} alt="rating" key={index} />
                     )) :
                     [...Array(4)].map((_, index) => (

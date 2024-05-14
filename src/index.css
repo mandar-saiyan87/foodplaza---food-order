@@ -998,6 +998,7 @@ img {
 /************************ Admin Page ***********************/
 .admin_main {
   width: 1536px;
+  min-height: 100%;
   overflow-x: scroll;
 }
 
@@ -1021,7 +1022,7 @@ img {
 
 .admin_menu {
   width: 100%;
-  height: 100vh;
+  min-height: 100%;
   display: flex;
 }
 
@@ -1064,6 +1065,7 @@ img {
 
 .admin_current_menu {
   width: 80%;
+  min-height: 100%;
   border-right: 2px solid var(--tertiary-color);
   border-bottom: 2px solid var(--tertiary-color);
 }
@@ -1144,9 +1146,16 @@ img {
   flex-direction: column;
 }
 
+.new_menu_img {
+  width: 11rem;
+  height: 11rem;
+  margin: 1rem 0;
+  border-radius: 6rem;
+}
 
 .addmenu_main input,
-textarea {
+textarea,
+select {
   width: 60%;
   margin: 0.5rem 0;
   outline: none;
@@ -1154,6 +1163,17 @@ textarea {
   padding: 0.5rem;
   border-radius: 0.2rem;
   font-size: 0.9rem;
+}
+
+.button_custom {
+  max-width: max-content;
+  margin: 1rem 0;
+}
+
+.menuitems_main {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
 }
 
 /*********************  Default-CSS  End *********************/

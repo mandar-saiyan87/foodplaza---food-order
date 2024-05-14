@@ -65,11 +65,11 @@ router.delete('/deletecategory/:id', async (req, res) => {
 router.get('/allmenu', async (req, res) => {
   // console.log('Get all menu route')
   try {
-    const allmenu = Menus.find()
+    const allmenu = await Menus.find()
     if (allmenu.length > 0) {
       return res.status(200).json(allmenu)
-    } else { 
-      return res.status(200).send('No items in menu')
+    } else {
+      return res.status(200).json([])
     }
   } catch (error) {
     console.error(error)
@@ -77,8 +77,24 @@ router.get('/allmenu', async (req, res) => {
   }
 })
 
-router.post('/addmenuitem', async (req, res) => { 
-  
+router.post('/addmenuitem', async (req, res) => {
+  const { title, ratings, image, price, prepTime, description, category } = req.body
+  try {
+    let menuItem = await Menus.findOne({ title: title })
+    if (menuItem) {
+      return res.status(403).send('Menu item already exist!')
+    }
+    const newMenuItem = await new Menus({
+      title, ratings, image, price, prepTime, description, category
+    })
+
+    const newMenu = await newMenuItem.save()
+    res.status(201).json(newMenu)
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send('Internal server error')
+  }
+
 })
 
 export default router;

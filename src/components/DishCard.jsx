@@ -53,7 +53,7 @@ function Dishdcard({ item }) {
       <div className='dcard'>
         <div className='dcard_image'>
           <div className='prodoverlay'>
-            <img src={item.image} alt={item.name} className='prodimg' />
+            <img src={item.image} alt={item.title} className='prodimg' />
           </div>
           <div className='addqty'>
             {qty > 0 ? <div className='manageqty'>
@@ -66,9 +66,9 @@ function Dishdcard({ item }) {
         <Link to={`/menu/${item._id}`}>
           <div className="dcard_details">
             <div className='dcard_heading'>
-              <p className='dcard_title'>{item.name}</p>
+              <p className='dcard_title'>{item.title}</p>
               <div className='rating'>
-                {item.rating ? [...Array(item.rating)].map((_, index) => (
+                {item.ratings ? [...Array(item.ratings)].map((_, index) => (
                   <img src={assets.star_yellow} alt="rating" key={index} />
                 )) : [...Array(4)].map((_, index) => (
                   <img src={assets.star_black} alt="rating" key={index} />

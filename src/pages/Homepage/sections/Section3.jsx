@@ -2,17 +2,21 @@ import React, { useState, useEffect } from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import DishCard from '../../../components/DishCard.jsx';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getallmenu } from '../../../store/menuSlice.js';
 
 function Section3() {
 
   const menuItems = useSelector((state) => state.menu.filterMenu.length > 0 ? state.menu.filterMenu : state.menu.menus);
 
-  const [menuList, setMenuList] = useState(menuItems)
+  const dispatch = useDispatch()
+  // console.log(menuItems)
+
+  // const [menuList, setMenuList] = useState(menuItems)
 
   useEffect(() => {
-    setMenuList(menuItems)
-  }, [menuItems])
+    dispatch(getallmenu())
+  }, [dispatch])
 
   return (
     <>
@@ -22,11 +26,12 @@ function Section3() {
         </div>
 
         <Row xs={1} md={2} lg={3} xl={4} className='card_section'>
-          {menuList.map(item => (
+          {menuItems.length > 0 ? menuItems.map(item => (
             <Col key={item._id}>
               <DishCard item={item} />
             </Col>
-          ))
+          )) :
+            <div>No Menu items added so far</div>
           }
         </Row>
       </div>
