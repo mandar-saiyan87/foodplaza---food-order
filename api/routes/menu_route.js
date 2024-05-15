@@ -114,4 +114,27 @@ router.delete('/deletemenuitem/:id', async (req, res) => {
   }
 })
 
+router.put('/editmenuitem', async (req, res) => {
+  const { image, title, rating, description, prepTime, price, category, id } = req.body
+  const edited = {
+    title: title,
+    ratings: rating,
+    image: image,
+    price: price,
+    prepTime: prepTime,
+    description: description,
+    category: category
+  }
+  try {
+    const editItem = await Menus.findByIdAndUpdate(id, edited, { new: true })
+    if (!editItem) { 
+      return res.status(404).send('Menu item not found')
+    }
+    return res.status(200).json(editItem)
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send('Internal server error')
+  }
+})
+
 export default router;

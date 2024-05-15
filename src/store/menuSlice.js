@@ -36,6 +36,17 @@ export const deletemenu = createAsyncThunk('deletemenu', async (id) => {
   return data
 })
 
+export const editMenu = createAsyncThunk('editMenu', async (editedItem) => {
+  // console.log(editedItem)
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/menu/editmenuitem`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(editedItem)
+  })
+  const data = await req.json()
+  return data
+})
+
 export const menuSlice = createSlice({
   name: 'menu',
   initialState,
@@ -97,6 +108,19 @@ export const menuSlice = createSlice({
         state.menus = state.menus.filter(menu => menu._id != action.payload)
       })
       .addCase(deletemenu.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error
+      })
+    builder.addCase(editMenu.pending, (state) => {
+      state.loading = true
+    })
+      .addCase(editMenu.fulfilled, (state, action) => {
+        state.loading = false
+        const updatedItem = action.payload
+        const edited = state.menus.findIndex(menu => menu._id === updatedItem._id)
+        state.menus[edited] = updatedItem
+      })
+      .addCase(editMenu.rejected, (state, action) => {
         state.loading = false
         state.error = action.error
       })
