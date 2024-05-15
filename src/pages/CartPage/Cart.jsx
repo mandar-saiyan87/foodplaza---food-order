@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addtocart, removefromcart, cartSubtotal, deliveryFees, cartTotal } from '../../store/cartSlice'
+import { sendtocart } from '../../store/cartSlice'
 import { assets } from '../../assets/assets'
 
 function Cart() {
@@ -9,6 +10,7 @@ function Cart() {
   const calculatecartSubtotal = useSelector(cartSubtotal)
   const delivery = useSelector(deliveryFees)
   const finalAmount = useSelector(cartTotal)
+  const userPhone = useSelector((state) => state.user.token.phoneNumber)
 
   const dispatch = useDispatch()
 
@@ -23,6 +25,12 @@ function Cart() {
   function reduceqty(item) {
     // console.log(item)
     dispatch(removefromcart({ 'menuItem': item, 'qty': -1 }))
+  }
+
+  function proceedCart() {
+    dispatch(sendtocart({
+      cartItems, delivery, finalAmount, userPhone
+    }))
   }
 
   return (
@@ -52,7 +60,7 @@ function Cart() {
                 cartItems.map(item => (
                   <div className='cart_item' key={item.menuItem._id}>
                     <div className='item_info'>
-                      <p className='title'>{item.menuItem.name}</p>
+                      <p className='title'>{item.menuItem.title}</p>
                       <div className='manageqty'>
                         <img src={assets.remove_icon_red} alt="removeqty" className='dcard_ico' onClick={() => reduceqty(item.menuItem)} />
                         <p className='qty'>{item.qty}</p>
@@ -81,7 +89,7 @@ function Cart() {
                   <p>${finalAmount}</p>
                 </div>
               </div>
-              <button className='proceed_button'>Proceed to Pay</button>
+              <button className='proceed_button' onClick={proceedCart}>Proceed to Pay</button>
             </div >
             :
             <div>No items added in cart</div>

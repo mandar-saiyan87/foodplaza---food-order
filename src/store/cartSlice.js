@@ -1,10 +1,21 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit'
+import { createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit'
 
 const initialState = {
   cartItems: [],
   delivery: 15,
   freeDelivery: 200,
+  loading: false,
+  error: null
 }
+
+export const sendtocart = createAsyncThunk('sendtocart', async (cart) => {
+  console.log(cart)
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(cart)
+  })
+})
 
 
 export const cartSlice = createSlice({
