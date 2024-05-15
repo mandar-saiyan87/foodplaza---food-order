@@ -18,7 +18,7 @@ function Section3() {
 
   useEffect(() => {
     dispatch(getallmenu())
-  }, [dispatch])
+  }, [dispatch, menuItems])
 
   return (
     <>
