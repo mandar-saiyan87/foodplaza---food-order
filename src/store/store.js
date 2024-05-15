@@ -5,6 +5,7 @@ import menuReducer from './menuSlice'
 import cartReducer from './cartSlice'
 import userReducer from './userSlice'
 import categoryReducer from './categorySlice'
+import orderReducer from './OrderSlice'
 
 
 const persistConfig = {
@@ -16,6 +17,7 @@ const MenuPersistedReducer = persistReducer(persistConfig, menuReducer)
 const CartPersistedReducer = persistReducer(persistConfig, cartReducer)
 const UserPersistedReducer = persistReducer(persistConfig, userReducer)
 const CategoryPersistedReducer = persistReducer(persistConfig, categoryReducer)
+const OrderPersistedReducer = persistReducer(persistConfig, orderReducer)
 
 
 export const store = configureStore({
@@ -23,7 +25,8 @@ export const store = configureStore({
     'menu': MenuPersistedReducer,
     'cart': CartPersistedReducer,
     'user': UserPersistedReducer,
-    'categories': CategoryPersistedReducer
+    'categories': CategoryPersistedReducer,
+    'order': OrderPersistedReducer,
   },
 })
 

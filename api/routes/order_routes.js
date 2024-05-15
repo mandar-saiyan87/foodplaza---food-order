@@ -16,6 +16,8 @@ router.post('', async (req, res) => {
       deliveryfees: delivery,
 
     })
+    const addNewOrder = await newOrder.save()
+    res.status(201).json(addNewOrder)
   } catch (error) {
     console.error(error)
     return res.status(500).send('Internal server error')
