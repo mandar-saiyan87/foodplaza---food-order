@@ -12,6 +12,7 @@ function Dishdcard({ item }) {
 
   const cartItems = useSelector((state) => state.cart.cartItems)
   const token = useSelector((state) => state.user.token)
+  const isDbUser = useSelector((state) => state.user.dbUser)
   const dispatch = useDispatch()
 
   const currentmenu = cartItems.find(menu => menu.menuItem._id === item._id)
@@ -25,7 +26,7 @@ function Dishdcard({ item }) {
 
   function addQty(e) {
     e.stopPropagation()
-    if (!token) {
+    if (!token && !isDbUser) {
       setWarning(true)
       setTimeout(() => {
         setWarning(false)

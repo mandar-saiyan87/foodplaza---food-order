@@ -17,6 +17,7 @@ function Navbar() {
   const cart = useSelector((state) => state.cart.cartItems)
 
   const isloggedIn = useSelector((state) => state.user.token)
+  const isDbUser = useSelector((state) => state.user.dbUser)
 
   const [showSearch, setSearch] = useState(false)
 
@@ -106,7 +107,7 @@ function Navbar() {
               <img src={assets.bag_icon} alt="cart" className='shopping_bag' />
             </div>
           </NavLink>
-          {!isloggedIn ? <button className='sign_in' onClick={() => setLoginModal(true)}>
+          {!isloggedIn && !isDbUser ? <button className='sign_in' onClick={() => setLoginModal(true)}>
             Sign In
           </button> :
             <div className='logout' onClick={logoutUser}>
@@ -137,7 +138,7 @@ function Navbar() {
                   ))}
                 </ul>
               </div>
-              {!isloggedIn ? <button className='mobile_sign_in' onClick={() => setLoginModal(true)}>
+              {!isloggedIn && !isDbUser ? <button className='mobile_sign_in' onClick={() => setLoginModal(true)}>
                 Sign In
               </button> :
                 <div className='mobile_logout' onClick={logoutUser}>

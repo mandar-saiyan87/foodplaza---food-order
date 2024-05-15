@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import { connectDB } from './db.js'
 import menuroutes from './routes/menu_route.js'
+import userroutes from './routes/user_route.js'
 
 
 connectDB()
@@ -12,6 +13,7 @@ app.use(cors())
 
 //Routes
 app.use('/api/menu', menuroutes);
+app.use('/api/user', userroutes)
 
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}`)

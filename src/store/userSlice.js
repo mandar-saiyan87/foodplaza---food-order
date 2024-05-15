@@ -1,8 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  token: null
+  token: null,
+  dbUser: false,
+  loading: false,
+  error: null
 }
+
+export const addUser = createAsyncThunk('addUser', async (userPhNum) => {
+  // console.log(userPhNum)
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/user`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(userPhNum)
+  })
+  const data = await req.json()
+  return data
+})
 
 export const userSlice = createSlice({
   name: 'user',
@@ -14,7 +28,21 @@ export const userSlice = createSlice({
     },
     unsetAuth: (state) => {
       state.token = null
+      state.dbUser = false
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(addUser.pending, (state) => {
+      state.loading = true
+    })
+      .addCase(addUser.fulfilled, (state, action) => {
+        state.loading = false
+        state.dbUser = action.payload.dbUser
+      })
+      .addCase(addUser.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error
+      })
   }
 })
 

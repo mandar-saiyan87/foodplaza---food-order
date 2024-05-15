@@ -5,7 +5,7 @@ import 'react-phone-input-2/lib/style.css'
 import { auth } from '../../services/firebase.config'
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
-import { authSet } from '../../store/userSlice'
+import { authSet, addUser } from '../../store/userSlice'
 import { testToken } from '../../services/testToken'
 
 function Login({ showModal }) {
@@ -23,6 +23,7 @@ function Login({ showModal }) {
     setPhone('')
     showModal(false)
     dispatch(authSet(testToken))
+    dispatch(addUser({ phNum: testToken.phoneNumber }))
   }
 
 
@@ -42,10 +43,10 @@ function Login({ showModal }) {
     try {
       const userData = await confirmation.confirm(otp)
       if (userData) {
-        // console.log(userData._tokenResponse)
+        const user = userData._tokenResponse
         setPhone('')
         showModal(false)
-        dispatch(authSet(testToken))
+        dispatch(authSet(user))
       }
     } catch (error) {
       console.error(error)
