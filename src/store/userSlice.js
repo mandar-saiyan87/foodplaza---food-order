@@ -37,6 +37,7 @@ export const userSlice = createSlice({
     })
       .addCase(addUser.fulfilled, (state, action) => {
         state.loading = false
+        // console.log(action.payload)
         state.dbUser = action.payload
       })
       .addCase(addUser.rejected, (state, action) => {

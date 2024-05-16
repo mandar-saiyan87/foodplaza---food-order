@@ -47,6 +47,7 @@ function Login({ showModal }) {
         setPhone('')
         showModal(false)
         dispatch(authSet(user))
+        dispatch(addUser({ phNum: user.phoneNumber }))
       }
     } catch (error) {
       console.error(error)

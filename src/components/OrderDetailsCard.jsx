@@ -39,8 +39,8 @@ function OrderDetailsCard({ order }) {
       <hr />
       <div className='order_footer'>
         <div className='final_total'>
-          <p>Delivery Charges: {order.deliveryfees}</p>
-          <p>Total Amount: {order.totalAmount}</p>
+          <p>Delivery Charges: ${order.deliveryfees}</p>
+          <p>Total Amount: ${order.totalAmount}</p>
         </div>
         <div className='order_set_status'>
           <p>Status</p>
