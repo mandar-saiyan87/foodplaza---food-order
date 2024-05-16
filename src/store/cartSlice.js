@@ -29,6 +29,16 @@ export const getOrders = createAsyncThunk('getOrders', async () => {
   return data
 })
 
+export const updateOrders = createAsyncThunk('updateOrders', async (order) => {
+  console.log(order)
+  // const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
+  //   method: 'PUT',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify(cart)
+  // })
+  // const data = await req.json()
+  // return data
+})
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -81,6 +91,17 @@ export const cartSlice = createSlice({
         state.orders = action.payload
       })
       .addCase(getOrders.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error
+      })
+    builder.addCase(updateOrders.pending, (state) => {
+      state.loading = true
+    })
+      .addCase(updateOrders.fulfilled, (state, action) => {
+        state.loading = false
+        console.log(action.payload)
+      })
+      .addCase(updateOrders.rejected, (state, action) => {
         state.loading = false
         state.error = action.error
       })

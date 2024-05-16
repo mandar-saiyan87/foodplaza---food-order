@@ -1,8 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { updateOrders } from '../store/cartSlice'
 
 function OrderDetailsCard({ order }) {
 
+  const dispatch = useDispatch()
+
+  const orderId = order._id
   const [orderStatus, setOrderStatus] = useState(order.status)
+
+  useEffect(() => {
+    dispatch(updateOrders({ orderId, orderStatus }))
+  }, [orderStatus])
+
+
 
   return (
     <div key={order._id} className="order_card">
@@ -13,7 +24,7 @@ function OrderDetailsCard({ order }) {
           <p className='address'>{order.address}</p>
         </div>
         <div className='order_status'>
-          <p style={order.status === 'delivered' ? { color: 'green' } : { color: 'rgb(242, 125, 36)' }}>{order.status}</p>
+          <p style={orderStatus === 'delivered' ? { color: 'green' } : { color: 'rgb(242, 125, 36)' }}>{orderStatus}</p>
         </div>
       </div>
       <hr />

@@ -1277,7 +1277,7 @@ select {
 }
 
 .order_owner .name,
-.contact {
+.order_owner .contact {
   color: black;
   font-weight: 600;
 }

@@ -11,7 +11,7 @@ const OrdersSection = () => {
 
   useEffect(() => {
     dispatch(getOrders())
-  }, [dispatch])
+  }, [dispatch, allOrders])
 
   return (
     <>
