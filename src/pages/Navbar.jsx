@@ -103,7 +103,7 @@ function Navbar() {
           </div>}
           <NavLink to='/cart'>
             <div className='cart_status'>
-              {cart.length > 0 && <div className='cart_added'></div>}
+              {isDbUser && cart.length > 0 ? <div className='cart_added'></div> : null}
               <img src={assets.bag_icon} alt="cart" className='shopping_bag' />
             </div>
           </NavLink>

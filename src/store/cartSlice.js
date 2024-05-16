@@ -2,11 +2,15 @@ import { createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit'
 
 const initialState = {
   cartItems: [],
+  orders: [],
+  orderSuccess: '',
   delivery: 15,
   freeDelivery: 200,
   loading: false,
   error: null
 }
+
+
 
 export const sendtocart = createAsyncThunk('sendtocart', async (cart) => {
   console.log(cart)
@@ -15,6 +19,14 @@ export const sendtocart = createAsyncThunk('sendtocart', async (cart) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(cart)
   })
+  const data = await req.json()
+  return data
+})
+
+export const getOrders = createAsyncThunk('getOrders', async () => {
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`)
+  const data = await req.json()
+  return data
 })
 
 
@@ -41,12 +53,42 @@ export const cartSlice = createSlice({
           state.cartItems = state.cartItems.filter(menu => menu.qty !== 0)
         }
       }
+    },
+    resetOrderSuccess: (state) => {
+      state.orderSuccess = ''
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(sendtocart.pending, (state) => {
+      state.loading = true
+    })
+      .addCase(sendtocart.fulfilled, (state, action) => {
+        state.loading = false
+        state.orders.push(action.payload)
+        state.orderSuccess = 'Success'
+        state.cartItems = []
+      })
+      .addCase(sendtocart.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error
+        state.orderSuccess = 'Failed'
+      })
+    builder.addCase(getOrders.pending, (state) => {
+      state.loading = true
+    })
+      .addCase(getOrders.fulfilled, (state, action) => {
+        state.loading = false
+        state.orders = action.payload
+      })
+      .addCase(getOrders.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error
+      })
   }
 })
 
 
-export const { addtocart, removefromcart } = cartSlice.actions
+export const { addtocart, removefromcart, resetOrderSuccess } = cartSlice.actions
 
 export default cartSlice.reducer
 

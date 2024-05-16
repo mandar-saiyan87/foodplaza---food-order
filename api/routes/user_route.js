@@ -11,10 +11,10 @@ router.post('', async (req, res) => {
       const newUser = await new Users({
         mobileNumber: phNum
       })
-      const userSave = await newUser.save()
-      return res.status(200).json({ dbUser: true })
+      const user = await newUser.save()
+      return res.status(200).json(user)
     }
-    return res.status(200).json({ dbUser: true })
+    return res.status(200).json(user)
   } catch (error) {
     console.error(error)
     return res.status(500).send('Internal server error')

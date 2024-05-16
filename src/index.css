@@ -1237,5 +1237,90 @@ select {
   font-size: 0.9rem;
 }
 
+.admin_order_details_main {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.order_card {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  align-items: start;
+  margin: 0.8rem 0;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--tertiary-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order_heading {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.order_status {
+  font-weight: 600;
+}
+
+.order_card hr {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid var(--secondary-color);
+  margin: 1rem 0;
+}
+
+.order_owner .name,
+.contact {
+  color: black;
+  font-weight: 600;
+}
+
+.order_owner .address {
+  color: var(--tertiary-color);
+  font-size: 0.8rem;
+}
+
+.order_items {
+  display: flex;
+  gap: 8rem;
+  margin: 0.2rem;
+}
+
+.order_items .item_name {
+  flex: 1;
+}
+
+.final_total {
+  color: black;
+  font-weight: 600;
+}
+
+.final_total p {
+  margin: 0.2rem 0
+}
+
+.order_footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.order_set_status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.order_set_status select {
+  width: 100%;
+}
 
 /*********************  Default-CSS  End *********************/

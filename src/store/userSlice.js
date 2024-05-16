@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   token: null,
-  dbUser: false,
+  dbUser: null,
   loading: false,
   error: null
 }
@@ -28,7 +28,7 @@ export const userSlice = createSlice({
     },
     unsetAuth: (state) => {
       state.token = null
-      state.dbUser = false
+      state.dbUser = null
     }
   },
   extraReducers: (builder) => {
@@ -37,7 +37,7 @@ export const userSlice = createSlice({
     })
       .addCase(addUser.fulfilled, (state, action) => {
         state.loading = false
-        state.dbUser = action.payload.dbUser
+        state.dbUser = action.payload
       })
       .addCase(addUser.rejected, (state, action) => {
         state.loading = false

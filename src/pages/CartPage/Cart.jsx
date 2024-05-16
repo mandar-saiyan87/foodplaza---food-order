@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addtocart, removefromcart, cartSubtotal, deliveryFees, cartTotal } from '../../store/cartSlice'
-import { sendtocart } from '../../store/cartSlice'
+import { addtocart, removefromcart, cartSubtotal, deliveryFees, cartTotal, sendtocart, resetOrderSuccess } from '../../store/cartSlice'
 import { assets } from '../../assets/assets'
+import Alerts from '../../components/Alerts'
+import { validateForm } from '../../components/validateForm'
 
 function Cart() {
 
@@ -10,16 +11,25 @@ function Cart() {
   const calculatecartSubtotal = useSelector(cartSubtotal)
   const delivery = useSelector(deliveryFees)
   const finalAmount = useSelector(cartTotal)
-  const userPhone = useSelector((state) => state.user.token.phoneNumber)
+  const dbUser = useSelector((state) => state.user.dbUser)
+  const orderStatus = useSelector((state) => state.cart.orderSuccess)
+
+  const [formwarning, setformwarning] = useState(false)
+
+  const [fname, setfname] = useState('')
+  const [lname, setlname] = useState('')
+  const [addrs, setaddrs] = useState('')
+  const [city, setcity] = useState('')
+  const [pin, setpin] = useState('')
+  const [statename, setstatename] = useState('')
+  const [phone, setphone] = useState('')
+
 
   const dispatch = useDispatch()
-
-  // console.log(cartItems)
 
   function addQty(item) {
     // console.log(item)
     dispatch(addtocart({ 'menuItem': item, 'qty': 1 }))
-
   }
 
   function reduceqty(item) {
@@ -28,33 +38,66 @@ function Cart() {
   }
 
   function proceedCart() {
-    dispatch(sendtocart({
-      cartItems, delivery, finalAmount, userPhone
-    }))
+    const validate = validateForm(fname, lname, addrs, city, pin, statename, phone)
+    if (!validate) {
+      setformwarning(true)
+      setTimeout(() => {
+        setformwarning(false)
+      }, 2000);
+    } else {
+      const userPhone = dbUser._id
+      const name = fname + ' ' + lname
+      const address = addrs + ', ' + city + ', ' + pin + ', ' + statename
+      dispatch(sendtocart({
+        cartItems, delivery, finalAmount, userPhone, name, address, phone
+      }))
+      setfname('')
+      setlname('')
+      setaddrs('')
+      setcity('')
+      setpin('')
+      setstatename('')
+      setphone('')
+    }
+
   }
+
+  useEffect(() => {
+    if (orderStatus === 'Success' || orderStatus === 'Failed') {
+      const alerttimer = setTimeout(() => {
+        dispatch(resetOrderSuccess())
+      }, 2000)
+      return () => clearTimeout(alerttimer)
+    }
+
+  }, [orderStatus, dispatch]);
+
 
   return (
     <>
+      {formwarning && <Alerts status="Warning" message="Delivery information required" />}
+      {orderStatus === 'Success' ? <Alerts status="Success" message="Order placed successfully" /> :
+        orderStatus === "Failed" ? <Alerts status="Error" message="Failed to place order, try again" /> : null}
       <div className='cart_main'>
         <div className='delivery_form'>
           <h5>Delivery Information</h5>
           <form className='' >
             <div className='form_div'>
-              <input type="text" id='fname' name='fname' placeholder='first name' />
-              <input type="text" id='lname' name='lname' placeholder='last name' />
+              <input type="text" id='fname' name='fname' placeholder='first name' value={fname} onChange={(e) => setfname(e.target.value)} />
+              <input type="text" id='lname' name='lname' placeholder='last name' value={lname} onChange={(e) => setlname(e.target.value)} />
             </div>
-            <input type="text" id='address' name='address' placeholder='address' />
+            <input type="text" id='address' name='address' placeholder='address' value={addrs} onChange={(e) => setaddrs(e.target.value)} />
             <div className='form_div'>
-              <input type="text" id='city' name='city' placeholder='city' />
-              <input type="number" id='pin' name='pin' placeholder='pin' />
+              <input type="text" id='city' name='city' placeholder='city' value={city} onChange={(e) => setcity(e.target.value)} />
+              <input type="number" id='pin' name='pin' placeholder='pin' value={pin} onChange={(e) => setpin(e.target.value)} />
             </div>
-            <input type="text" id='state' name='state' placeholder='state' />
-            <input type="number" id='phone' name='phone' placeholder='phone' />
+            <input type="text" id='state' name='state' placeholder='state' value={statename} onChange={(e) => setstatename(e.target.value)} />
+            <input type="number" id='phone' name='phone' placeholder='phone' value={phone} onChange={(e) => setphone(e.target.value)} />
           </form>
         </div>
         <div className='cart'>
           <h5>Cart Total</h5>
-          {cartItems.length > 0 ?
+          {dbUser && cartItems.length > 0 ?
             < div className='cart_summary' >
               {
                 cartItems.map(item => (

@@ -16,7 +16,7 @@ const CartSchema = mongoose.Schema({
 const OrdersSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'users',
     required: true
   },
   cartitems: [CartSchema],
@@ -32,6 +32,18 @@ const OrdersSchema = mongoose.Schema({
     type: String,
     enum: ['pending', 'accepted', 'in process', 'delivered', 'cancelled'],
     default: 'pending'
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  address: {
+    type: String,
+    required: true
+  },
+  phno: {
+    type: String,
+    required: true
   },
   created: {
     type: Date,
