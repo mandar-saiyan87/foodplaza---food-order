@@ -348,6 +348,27 @@ img {
 
 .logout {
   cursor: pointer;
+  width: 1.2rem;
+  position: relative;
+}
+
+.user_options {
+  position: absolute;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  z-index: 21;
+  padding: 0.6rem 1.2rem;
+  left: -1.7rem;
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+}
+
+.user_options ul li {
+  margin: 0.5rem 0;
+  color: var(--secondary-color)
 }
 
 .mobile_logout {
@@ -1321,6 +1342,90 @@ select {
 
 .order_set_status select {
   width: 100%;
+}
+
+.user_orders_main {
+  margin: 1rem 0;
+}
+
+.order_page_title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1rem 0;
+}
+
+.no_order {
+  height: 100vh;
+}
+
+.userorder_card {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: start;
+  margin: 0.8rem 0;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--tertiary-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.userorder_heading {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.userorder_owner .name,
+.userorder_owner .contact {
+  color: black;
+  font-weight: 600;
+}
+
+.userorder_owner .address {
+  color: var(--tertiary-color);
+  font-size: 0.8rem;
+}
+
+.userorder_status {
+  font-weight: 600;
+}
+
+.userorder_card hr {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid var(--secondary-color);
+  margin: 1rem 0;
+}
+
+.userorder_items {
+  display: flex;
+  gap: 8rem;
+  margin: 0.2rem;
+}
+
+.userorder_items .item_name {
+  flex: 1;
+}
+
+.userorder_footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.userfinal_total {
+  color: black;
+  font-weight: 600;
+}
+
+.userfinal_total p {
+  margin: 0.2rem 0
 }
 
 /*********************  Default-CSS  End *********************/

@@ -6,3 +6,5 @@ export const testToken = {
   "isNewUser": true,
   "phoneNumber": "+919167949688"
 }
+
+// "phoneNumber": "+919967949690"

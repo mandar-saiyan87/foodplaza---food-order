@@ -11,6 +11,7 @@ import CategorySection from "./pages/AdminPage/CategorySection";
 import AddmenuSection from "./pages/AdminPage/AddmenuSection";
 import MenuItemSection from "./pages/AdminPage/MenuItemSection";
 import OrdersSection from "./pages/AdminPage/OrdersSection";
+import UserOrders from "./pages/UserOders/UserOrders";
 import Error404 from "./pages/Error404";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { store, persistor } from "./store/store";
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: '/menu/:id',
         element: <MenuDetails />
+      },
+      {
+        path: '/orderview/:userid',
+        element: <UserOrders />
       },
     ],
     errorElement: <Error404 />

@@ -18,6 +18,22 @@ router.get('', async (req, res) => {
   }
 })
 
+router.get('/currentuser/:id', async (req, res) => {
+  const UserId = req.params.id
+  // console.log(UserId)
+  try {
+    const userOrders = await Orders.find({ user: UserId }).populate(('cartitems.menuItem'))
+    if (userOrders.length > 0) {
+      return res.status(200).json(userOrders)
+    } else {
+      return res.status(200).json([])
+    }
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send('Internal server error')
+  }
+})
+
 
 router.post('', async (req, res) => {
   const { cartItems, delivery, finalAmount, userPhone, name, address, phone } = req.body
@@ -43,7 +59,7 @@ router.put('', async (req, res) => {
   const updatedOrder = req.body
   try {
     const updated = await Orders.findByIdAndUpdate(updatedOrder._id, updatedOrder, { new: true })
-    if (!updated) { 
+    if (!updated) {
       return res.status(404).send('Order not found')
     }
     return res.status(200).json(updated)

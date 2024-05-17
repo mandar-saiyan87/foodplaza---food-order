@@ -92,7 +92,7 @@ function Cart() {
               <input type="number" id='pin' name='pin' placeholder='pin' value={pin} onChange={(e) => setpin(e.target.value)} />
             </div>
             <input type="text" id='state' name='state' placeholder='state' value={statename} onChange={(e) => setstatename(e.target.value)} />
-            <input type="number" id='phone' name='phone' placeholder='phone' value={phone} onChange={(e) => setphone(e.target.value)} />
+            <input type="number" id='phone' name='phone' placeholder='phone' value={phone} onChange={(e) => setphone(e.target.value)} maxLength={10}/>
           </form>
         </div>
         <div className='cart'>

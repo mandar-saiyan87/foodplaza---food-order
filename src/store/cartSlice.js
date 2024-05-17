@@ -13,7 +13,6 @@ const initialState = {
 
 
 export const sendtocart = createAsyncThunk('sendtocart', async (cart) => {
-  console.log(cart)
   const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -28,6 +27,13 @@ export const getOrders = createAsyncThunk('getOrders', async () => {
   const data = await req.json()
   return data
 })
+
+export const getordersCurrentUser = createAsyncThunk('getordersCurrentUser', async (id) => {
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/currentuser/${id}`);
+  const data = req.json()
+  return data
+})
+
 
 export const updateOrders = createAsyncThunk('updateOrders', async (order) => {
   const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
@@ -98,9 +104,22 @@ export const cartSlice = createSlice({
     })
       .addCase(updateOrders.fulfilled, (state, action) => {
         state.loading = false
-        console.log(action.payload)
+        const updated = action.payload
+        const updatedOrder = state.orders.findIndex(order => order._id === updated._id)
+        state.orders[updatedOrder] = updated
       })
       .addCase(updateOrders.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error
+      })
+    builder.addCase(getordersCurrentUser.pending, (state) => {
+      state.loading = true
+    })
+      .addCase(getordersCurrentUser.fulfilled, (state, action) => {
+        state.loading = false
+       state.orders = action.payload
+      })
+      .addCase(getordersCurrentUser.rejected, (state, action) => {
         state.loading = false
         state.error = action.error
       })

@@ -219,6 +219,10 @@
     margin: 1.5rem 0;
   }
 
+  .userorder_card {
+    width: 70%;
+  }
+
 }
 
 @media (max-width: 575px) {
@@ -427,6 +431,10 @@
 
   .menu_heading .price {
     font-size: 1.3rem;
+  }
+
+  .userorder_card {
+    width: 100%;
   }
 }
 

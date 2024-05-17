@@ -8,13 +8,13 @@ const initialState = {
 }
 
 export const addUser = createAsyncThunk('addUser', async (userPhNum) => {
-  // console.log(userPhNum)
   const req = await fetch(`${process.env.REACT_APP_API_URL}/api/user`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userPhNum)
   })
   const data = await req.json()
+  // console.log(data)
   return data
 })
 

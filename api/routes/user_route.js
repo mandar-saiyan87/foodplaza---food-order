@@ -15,7 +15,6 @@ router.post('', async (req, res) => {
       const user = await newUser.save()
       return res.status(200).json(user)
     }
-    console.log(user)
     return res.status(200).json(user)
   } catch (error) {
     console.error(error)

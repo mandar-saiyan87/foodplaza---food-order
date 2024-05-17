@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Logo from '../components/Logo'
 import { assets } from "../assets/assets.js"
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { searchMenu } from '../store/menuSlice.js'
 import { unsetAuth } from '../store/userSlice.js'
@@ -21,11 +21,15 @@ function Navbar() {
 
   // console.log(isDbUser)
 
+  const searchRef = useRef(null)
+
+  const userOptionsref = useRef()
+
   const [showSearch, setSearch] = useState(false)
 
   const [loginModal, setLoginModal] = useState(false)
 
-  const searchRef = useRef(null)
+  const [userOptions, setUserOptions] = useState(false)
 
   const [searchDish, setSearchDish] = useState('')
 
@@ -41,10 +45,27 @@ function Navbar() {
     }
   }
 
+  function closeUserOptions(e) {
+    if (userOptionsref.current && !userOptionsref.current.contains(e.target)) {
+      setUserOptions(false)
+    }
+  }
+
+
+
   function logoutUser() {
     dispatch(unsetAuth())
     navigate('/')
   }
+
+  useEffect(() => {
+    document.addEventListener('click', closeUserOptions)
+    return () => {
+
+      document.removeEventListener('click', closeUserOptions)
+    }
+  }, [])
+
 
   useEffect(() => {
     document.addEventListener('click', closeSearch);
@@ -72,6 +93,7 @@ function Navbar() {
   useEffect(() => {
     dispatch(searchMenu(searchDish))
   }, [searchDish])
+
 
   return (
     <>
@@ -112,10 +134,25 @@ function Navbar() {
           {!isloggedIn && !isDbUser ? <button className='sign_in' onClick={() => setLoginModal(true)}>
             Sign In
           </button> :
-            <div className='logout' onClick={logoutUser}>
-              <img src={assets.logout_icon} alt="logout" />
+            <div className='logout' onClick={() => setUserOptions(!userOptions)} ref={userOptionsref}>
+              <img src={assets.profile_icon} alt="logout" />
+              {
+                userOptions &&
+                <div className="user_options">
+                  <ul>
+                    <li>Settings</li>
+                    <Link to={`/orderview/${isDbUser._id}`}>
+                      <li >Orders</li>
+                    </Link>
+                    <li onClick={logoutUser}>Logout</li>
+                  </ul>
+                </div>
+              }
+
             </div>
           }
+
+          {/************* Mobile Menu *************/}
 
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="mobile_menu" onClick={() => setMobileDrawer(true)}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
