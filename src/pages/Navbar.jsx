@@ -175,10 +175,13 @@ function Navbar() {
                       <li>{menuitem.name}</li>
                     </NavLink>
                   ))}
-                  <NavLink to={`/orderview/${isDbUser._id}`} className={({ isActive }) =>
-                    isActive ? "mobile_menu_item_active" : "mobile_menu_item"}>
-                    <li >Orders</li>
-                  </NavLink>
+                  {
+                    isloggedIn && isDbUser ? <NavLink to={`/orderview/${isDbUser._id}`} className={({ isActive }) =>
+                      isActive ? "mobile_menu_item_active" : "mobile_menu_item"}>
+                      <li >Orders</li>
+                    </NavLink> : ''
+                  }
+
                 </ul>
               </div>
               {!isloggedIn && !isDbUser ? <button className='mobile_sign_in' onClick={() => setLoginModal(true)}>
