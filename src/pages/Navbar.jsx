@@ -181,7 +181,6 @@ function Navbar() {
                       <li >Orders</li>
                     </NavLink> : ''
                   }
-
                 </ul>
               </div>
               {!isloggedIn && !isDbUser ? <button className='mobile_sign_in' onClick={() => setLoginModal(true)}>
