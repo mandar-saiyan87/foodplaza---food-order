@@ -30,14 +30,13 @@ export const getOrders = createAsyncThunk('getOrders', async () => {
 })
 
 export const updateOrders = createAsyncThunk('updateOrders', async (order) => {
-  console.log(order)
-  // const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
-  //   method: 'PUT',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(cart)
-  // })
-  // const data = await req.json()
-  // return data
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(order)
+  })
+  const data = await req.json()
+  return data
 })
 
 export const cartSlice = createSlice({

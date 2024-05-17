@@ -127,7 +127,7 @@ router.put('/editmenuitem', async (req, res) => {
   }
   try {
     const editItem = await Menus.findByIdAndUpdate(id, edited, { new: true })
-    if (!editItem) { 
+    if (!editItem) {
       return res.status(404).send('Menu item not found')
     }
     return res.status(200).json(editItem)

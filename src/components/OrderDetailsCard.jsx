@@ -6,13 +6,19 @@ function OrderDetailsCard({ order }) {
 
   const dispatch = useDispatch()
 
-  const orderId = order._id
   const [orderStatus, setOrderStatus] = useState(order.status)
 
-  useEffect(() => {
-    dispatch(updateOrders({ orderId, orderStatus }))
-  }, [orderStatus])
+  function updateOrderStatus(e) {
+    const status = e.target.value;
+    setOrderStatus(status)
 
+    const updatedOrder = {
+      ...order,
+      status: status
+    }
+
+    dispatch(updateOrders(updatedOrder))
+  }
 
 
   return (
@@ -44,7 +50,7 @@ function OrderDetailsCard({ order }) {
         </div>
         <div className='order_set_status'>
           <p>Status</p>
-          <select select name="status" id="status" onChange={(e) => setOrderStatus(e.target.value)} value={orderStatus}>
+          <select select name="status" id="status" onChange={(e) => updateOrderStatus(e)} value={orderStatus}>
             <option value="pending">pending</option>
             <option value="accepted">accepted</option>
             <option value="in process">in process</option>
@@ -58,3 +64,6 @@ function OrderDetailsCard({ order }) {
 }
 
 export default OrderDetailsCard
+
+
+

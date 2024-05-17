@@ -81,7 +81,7 @@ function Login({ showModal }) {
               {phone !== '' && psubmit ?
                 <button className='login_button' onClick={verifyOtp}>Verify OTP</button>
                 :
-                <button className='login_button' onClick={getOtp} disabled={phone.length < 4}>GET OTP</button>
+                <button className='login_button' onClick={setUser} disabled={phone.length < 4}>GET OTP</button>
               }
             </div>
           </div>

@@ -39,8 +39,18 @@ router.post('', async (req, res) => {
   }
 })
 
-router.put('', async (req, res) => { 
-  console.log(req.body)
+router.put('', async (req, res) => {
+  const updatedOrder = req.body
+  try {
+    const updated = await Orders.findByIdAndUpdate(updatedOrder._id, updatedOrder, { new: true })
+    if (!updated) { 
+      return res.status(404).send('Order not found')
+    }
+    return res.status(200).json(updated)
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send('Internal server error')
+  }
 })
 
 export default router;
