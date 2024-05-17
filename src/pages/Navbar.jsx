@@ -175,6 +175,9 @@ function Navbar() {
                       <li>{menuitem.name}</li>
                     </NavLink>
                   ))}
+                  <Link to={`/orderview/${isDbUser._id}`}>
+                    <li >Orders</li>
+                  </Link>
                 </ul>
               </div>
               {!isloggedIn && !isDbUser ? <button className='mobile_sign_in' onClick={() => setLoginModal(true)}>
