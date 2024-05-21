@@ -58,8 +58,8 @@ function AdminLogin() {
             <p>Admin Login</p>
           </div>
           <div className='adminlogin_inputs'>
-            <input type="text" placeholder='admin user....' onChange={(e) => setUsername(e.target.value)} />
-            <input type="password" placeholder='admin password....' onChange={(e) => setPassword(e.target.value)} />
+            <input type="text" placeholder='admin user....' onChange={(e) => setUsername(e.target.value)} value={username} />
+            <input type="password" placeholder='admin password....' onChange={(e) => setPassword(e.target.value)} value={password} />
             <button className='login_button' onClick={handleadminLogin}>Login</button>
           </div>
         </div>
