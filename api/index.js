@@ -9,6 +9,7 @@ import orderroutes from './routes/order_routes.js'
 connectDB()
 const app = express()
 const port = 5000
+
 app.use(express.json())
 app.use(cors())
 

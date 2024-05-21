@@ -8,5 +8,19 @@ const UserSchema = mongoose.Schema({
   }
 })
 
+const AdminSchema = mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true
+  },
+  password: {
+    type: String,
+    required: true
+  }
+})
+
 const Users = mongoose.model('users', UserSchema)
+export const Admin = mongoose.model('adminuser', AdminSchema)
 export default Users

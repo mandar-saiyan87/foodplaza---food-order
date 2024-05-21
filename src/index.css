@@ -1040,6 +1040,24 @@ img {
 
 .profile_pic {
   width: 1.2rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.admin_logout_btn {
+  position: absolute;
+  top: 8%;
+  right: 4.5%;
+  background-color: white;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 21;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+  cursor: pointer;
 }
 
 .admin_menu {
@@ -1426,6 +1444,39 @@ select {
 
 .userfinal_total p {
   margin: 0.2rem 0
+}
+
+.adminlogin_main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--primary-color);
+}
+
+.adminlogin_block {
+  background-color: white;
+  padding: 1rem 2rem;
+  border: 1px solid var(--tertiary-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.adminlogin_inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.adminlogin_inputs input {
+  padding: 0.7rem 0.5rem;
+  border: 1px solid var(--tertiary-color);
+  outline: none;
+  border-radius: 0.2rem;
+  margin: 0.8rem 0;
+  font-size: 0.9rem;
 }
 
 /*********************  Default-CSS  End *********************/

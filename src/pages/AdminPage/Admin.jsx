@@ -1,13 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Logo from '../../components/Logo'
 import { assets } from '../../assets/assets'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { adminLogout } from '../../store/userSlice'
+import { useDispatch } from 'react-redux'
 
 
 const Admin = () => {
 
   const currenturl = useLocation()
   const navigate = useNavigate()
+  const logoutref = useRef()
+
+  const dispatch = useDispatch()
+
+  const [logoutbtn, setLogoutBtn] = useState(false)
+
+  const adminToken = JSON.parse(localStorage.getItem('adminToken'))
+
+  function closeLogout(e) {
+    if (logoutref.current && !logoutref.current.contains(e.target)) {
+      setLogoutBtn(false)
+    }
+  }
+
 
 
   const adminMenu = [
@@ -29,11 +45,30 @@ const Admin = () => {
     }
   ]
 
+  function logoutAdmin() {
+    dispatch(adminLogout())
+    navigate('/admin/login')
+  }
+
+  useEffect(() => {
+    document.addEventListener('click', closeLogout)
+    return () => {
+
+      document.removeEventListener('click', closeLogout)
+    }
+  }, [])
+
+
   useEffect(() => {
     if (currenturl.pathname === '/admin') {
-      navigate('/admin/Categories')
+      if (adminToken) {
+        navigate('/admin/Categories')
+      } else {
+        navigate('/admin/login')
+      }
     }
-  }, [currenturl])
+  }, [currenturl, navigate, adminToken])
+
 
   return (
     <>
@@ -43,9 +78,14 @@ const Admin = () => {
             <Logo />
             <p className="logo_div_sub">Admin Panel</p>
           </div>
-          <div className="profile_pic">
+          <div className="profile_pic" ref={logoutref} onClick={() => setLogoutBtn(!logoutbtn)}>
             <img src={assets.profile_icon} alt="profile" />
           </div>
+          {logoutbtn &&
+            <div className='admin_logout_btn' onClick={logoutAdmin}>
+              <p>Logout</p>
+            </div>
+          }
         </div>
         <div className="admin_menu">
           <div className='admin_menu_tabs'>
