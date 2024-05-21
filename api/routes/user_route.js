@@ -38,7 +38,7 @@ router.post('/adminlogin', async (req, res) => {
       return res.status(401).json({ code: 401, message: 'Login failed. Wrong password.', status: 'Error' });
     }
     const token = jwt.sign({ id: isAdmin._id, username: isAdmin.username }, JWT_SECRET)
-    consolelog({ code: 200, token, message: 'Login Successful', isAdmin: true })
+    // consolelog({ code: 200, token, message: 'Login Successful', isAdmin: true })
     return res.status(200).json({ code: 200, token, message: 'Login Successful', isAdmin: true })
   } catch (error) {
     console.log(error)
