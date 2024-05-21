@@ -41,6 +41,7 @@ router.post('/adminlogin', async (req, res) => {
     consolelog({ code: 200, token, message: 'Login Successful', isAdmin: true })
     return res.status(200).json({ code: 200, token, message: 'Login Successful', isAdmin: true })
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: 'Internal server error', error })
   }
 })
