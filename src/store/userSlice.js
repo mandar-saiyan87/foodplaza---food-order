@@ -27,7 +27,7 @@ export const adminlogin = createAsyncThunk('adminlogin', async (usercreds) => {
     body: JSON.stringify(usercreds)
   })
   const data = await req.json()
-  // console.log(data)
+  console.log(data)
   if (data.token) {
     localStorage.setItem('adminToken', JSON.stringify(data.token))
   }
