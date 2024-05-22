@@ -65,10 +65,17 @@ router.delete('/deletecategory/:id', async (req, res) => {
 
 // Get all menu item
 router.get('/allmenu', async (req, res) => {
-  // console.log('Get all menu route')
   try {
+
+    // const page = parseInt(req.query.page) || 1
+    // const perPage = 8
+    // const totalMenuItems = await Menus.countDocuments()
+    // const totalPages = Math.ceil(totalMenuItems / perPage)
+
+    // const allmenu = await Menus.find().skip((page - 1) * perPage).limit(perPage)
     const allmenu = await Menus.find()
     if (allmenu.length > 0) {
+      // return res.status(200).json({ data: allmenu, totalMenuItems, page, totalPages })
       return res.status(200).json(allmenu)
     } else {
       return res.status(200).json([])
