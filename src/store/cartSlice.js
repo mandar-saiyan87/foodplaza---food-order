@@ -8,6 +8,9 @@ const initialState = {
   freeDelivery: 200,
   loading: false,
   error: null,
+  userpage: 1,
+  usertotalPages: 0,
+  usertotalOrderItems: 0,
   page: 1,
   totalPages: 0,
   totalOrderItems: 0
@@ -31,8 +34,10 @@ export const getOrders = createAsyncThunk('getOrders', async (loadpage) => {
   return data
 })
 
-export const getordersCurrentUser = createAsyncThunk('getordersCurrentUser', async (id) => {
-  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/currentuser/${id}`);
+export const getordersCurrentUser = createAsyncThunk('getordersCurrentUser', async (orders) => {
+  const { userid, currentPage } = orders
+  console.log(userid, currentPage)
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/currentuser/${userid}?page=${currentPage}`);
   const data = req.json()
   return data
 })
@@ -127,7 +132,15 @@ export const cartSlice = createSlice({
     })
       .addCase(getordersCurrentUser.fulfilled, (state, action) => {
         state.loading = false
-        state.orders = action.payload
+        // state.orders = action.payload
+        const { userOrders, totalOrderItems, page, totalPages } = action.payload
+        const uniqueOrder = userOrders.filter(
+          (orderItem) => !state.orders.some((item) => item._id === orderItem._id)
+        )
+        state.orders = [...state.orders, ...uniqueOrder]
+        state.userpage = page
+        state.usertotalPages = totalPages
+        state.usertotalOrderItems = totalOrderItems
       })
       .addCase(getordersCurrentUser.rejected, (state, action) => {
         state.loading = false

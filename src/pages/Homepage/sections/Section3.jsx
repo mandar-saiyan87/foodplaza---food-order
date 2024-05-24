@@ -31,7 +31,9 @@ function Section3() {
 
 
   function fetchMoreMenu() {
-    dispatch(getallmenu(currentPage + 1))
+    if (currentPage < totalPages) {
+      dispatch(getallmenu(currentPage + 1))
+    }
   }
 
   return (

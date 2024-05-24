@@ -9,9 +9,9 @@ const OrdersSection = () => {
   const dispatch = useDispatch()
   const allOrders = useSelector((state) => state.cart.orders)
 
-  const currentPage = useSelector((state) => state.menu.page)
-  const totalPages = useSelector((state) => state.menu.totalPages)
-  const totalOrderItems = useSelector((state) => state.menu.totalOrderItems)
+  const currentPage = useSelector((state) => state.cart.page)
+  const totalPages = useSelector((state) => state.cart.totalPages)
+  const totalOrderItems = useSelector((state) => state.cart.totalOrderItems)
 
 
   useEffect(() => {
@@ -21,7 +21,9 @@ const OrdersSection = () => {
   }, [])
 
   function fetchMoreOrders() {
-    dispatch(getOrders(currentPage + 1))
+    if (currentPage < totalPages) {
+      dispatch(getOrders(currentPage + 1))
+    }
   }
 
   return (

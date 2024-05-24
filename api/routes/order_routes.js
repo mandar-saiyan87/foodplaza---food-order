@@ -12,7 +12,7 @@ router.get('', async (req, res) => {
     const totalOrderItems = await Orders.countDocuments()
     const totalPages = Math.ceil(totalOrderItems / perPage)
 
-    const allorders = await Orders.find().populate(('cartitems.menuItem')).skip((page - 1) * perPage).limit(perPage)
+    const allorders = await Orders.find().populate(('cartitems.menuItem')).sort({ created: -1 }).skip((page - 1) * perPage).limit(perPage)
     if (allorders.length > 0) {
       return res.status(200).json({ allorders, totalOrderItems, page, totalPages })
     } else {
@@ -27,11 +27,15 @@ router.get('', async (req, res) => {
 router.get('/currentuser/:id', async (req, res) => {
   +6
   const UserId = req.params.id
+  const page = parseInt(req.query.page)
+  const perPage = 4
+  const totalOrderItems = await Orders.countDocuments()
+  const totalPages = Math.ceil(totalOrderItems / perPage)
   // console.log(UserId)
   try {
-    const userOrders = await Orders.find({ user: UserId }).populate(('cartitems.menuItem'))
+    const userOrders = await Orders.find({ user: UserId }).populate(('cartitems.menuItem')).sort({ created: -1 }).skip((page - 1) * perPage).limit(perPage)
     if (userOrders.length > 0) {
-      return res.status(200).json(userOrders)
+      return res.status(200).json({ userOrders, totalOrderItems, page, totalPages })
     } else {
       return res.status(200).json([])
     }
