@@ -18,7 +18,7 @@ const OrdersSection = () => {
     if (allOrders.length === 0) {
       dispatch(getOrders(currentPage))
     }
-  }, [])
+  }, [dispatch])
 
   function fetchMoreOrders() {
     if (currentPage < totalPages) {
