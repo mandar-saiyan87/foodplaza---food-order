@@ -25,7 +25,6 @@ router.get('', async (req, res) => {
 })
 
 router.get('/currentuser/:id', async (req, res) => {
-  +6
   const UserId = req.params.id
   const page = parseInt(req.query.page)
   const perPage = 4

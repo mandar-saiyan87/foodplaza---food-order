@@ -8,9 +8,6 @@ const initialState = {
   freeDelivery: 200,
   loading: false,
   error: null,
-  userpage: 1,
-  usertotalPages: 0,
-  usertotalOrderItems: 0,
   page: 1,
   totalPages: 0,
   totalOrderItems: 0
@@ -138,9 +135,9 @@ export const cartSlice = createSlice({
           (orderItem) => !state.orders.some((item) => item._id === orderItem._id)
         )
         state.orders = [...state.orders, ...uniqueOrder]
-        state.userpage = page
-        state.usertotalPages = totalPages
-        state.usertotalOrderItems = totalOrderItems
+        state.page = page
+        state.totalPages = totalPages
+        state.totalOrderItems = totalOrderItems
       })
       .addCase(getordersCurrentUser.rejected, (state, action) => {
         state.loading = false

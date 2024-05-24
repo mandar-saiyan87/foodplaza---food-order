@@ -14,18 +14,17 @@ function UserOrders() {
   const allOrders = useSelector((state) => state.cart.orders)
 
   // console.log(allOrders)
-  let usercurrentPage = useSelector((state) => state.cart.userpage)
-  const usertotalPages = useSelector((state) => state.cart.usertotalPages)
-  const usertotalOrderItems = useSelector((state) => state.cart.usertotalOrderItems)
+  const currentPage = useSelector((state) => state.cart.page)
+  const totalPages = useSelector((state) => state.cart.totalPages)
+  const totalOrderItems = useSelector((state) => state.cart.totalOrderItems)
 
   useEffect(() => {
-    dispatch(getordersCurrentUser({ userid, usercurrentPage }))
+    dispatch(getordersCurrentUser({ userid, currentPage }))
   }, [dispatch])
 
   function fetchMoreOrders() {
-    usercurrentPage = usercurrentPage + 1
-    if (usercurrentPage < usertotalPages) {
-      dispatch(getordersCurrentUser({ userid, usercurrentPage }))
+    if (currentPage < totalPages) {
+      dispatch(getordersCurrentUser({ userid, currentPage: currentPage + 1 }))
     }
   }
 
@@ -38,7 +37,7 @@ function UserOrders() {
         <InfiniteScroll
           dataLength={allOrders.length}
           next={fetchMoreOrders}
-          hasMore={usercurrentPage < usertotalPages}
+          hasMore={currentPage < totalPages}
           loader={<h4>Loading...</h4>}
           style={{ overflowY: 'hidden' }}
         >
