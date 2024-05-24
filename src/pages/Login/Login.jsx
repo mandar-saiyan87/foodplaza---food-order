@@ -68,7 +68,8 @@ function Login({ showModal }) {
               <div className='login_form'>
                 {/* <input type="text" maxLength={10} onChange={(e) => setPhone(e.target.value)} placeholder='Phone no.' /> */}
                 <PhoneInput
-                  country={'us'}
+                  country={'in'}
+                  onlyCountries={['in']}
                   value={phone}
                   onChange={phone => setPhone("+" + phone)}
                 />
