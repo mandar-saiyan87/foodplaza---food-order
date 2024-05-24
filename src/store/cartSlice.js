@@ -2,12 +2,16 @@ import { createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit'
 
 const initialState = {
   cartItems: [],
+  adminOrders: [],
   orders: [],
   orderSuccess: '',
   delivery: 15,
   freeDelivery: 200,
   loading: false,
   error: null,
+  userpage: 1,
+  usertotalPages: 0,
+  usertotalOrderItems: 0,
   page: 1,
   totalPages: 0,
   totalOrderItems: 0
@@ -102,7 +106,7 @@ export const cartSlice = createSlice({
         const uniqueOrder = allorders.filter(
           (orderItem) => !state.orders.some((item) => item._id === orderItem._id)
         )
-        state.orders = [...state.orders, ...uniqueOrder]
+        state.adminOrders = [...state.orders, ...uniqueOrder]
         state.page = page
         state.totalPages = totalPages
         state.totalOrderItems = totalOrderItems
@@ -135,9 +139,9 @@ export const cartSlice = createSlice({
           (orderItem) => !state.orders.some((item) => item._id === orderItem._id)
         )
         state.orders = [...state.orders, ...uniqueOrder]
-        state.page = page
-        state.totalPages = totalPages
-        state.totalOrderItems = totalOrderItems
+        state.userpage = page
+        state.usertotalPages = totalPages
+        state.usertotalOrderItems = totalOrderItems
       })
       .addCase(getordersCurrentUser.rejected, (state, action) => {
         state.loading = false

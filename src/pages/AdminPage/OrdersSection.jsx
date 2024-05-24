@@ -7,7 +7,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 const OrdersSection = () => {
 
   const dispatch = useDispatch()
-  const allOrders = useSelector((state) => state.cart.orders)
+  const allOrders = useSelector((state) => state.cart.adminOrders)
 
   const currentPage = useSelector((state) => state.cart.page)
   const totalPages = useSelector((state) => state.cart.totalPages)
