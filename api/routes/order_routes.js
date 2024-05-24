@@ -6,9 +6,15 @@ const router = express.Router()
 
 router.get('', async (req, res) => {
   try {
-    const allorders = await Orders.find().populate(('cartitems.menuItem'))
+
+    const page = parseInt(req.query.page)
+    const perPage = 4
+    const totalOrderItems = await Orders.countDocuments()
+    const totalPages = Math.ceil(totalOrderItems / perPage)
+
+    const allorders = await Orders.find().populate(('cartitems.menuItem')).skip((page - 1) * perPage).limit(perPage)
     if (allorders.length > 0) {
-      return res.status(200).json(allorders)
+      return res.status(200).json({ allorders, totalOrderItems, page, totalPages })
     } else {
       return res.status(200).json([])
     }
@@ -19,6 +25,7 @@ router.get('', async (req, res) => {
 })
 
 router.get('/currentuser/:id', async (req, res) => {
+  +6
   const UserId = req.params.id
   // console.log(UserId)
   try {

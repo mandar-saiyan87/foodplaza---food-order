@@ -7,11 +7,14 @@ const initialState = {
   filterMenu: [],
   selectedcategory: null,
   loading: false,
-  error: null
+  error: null,
+  page: 1,
+  totalPages: 0,
+  totalmenuItems: 0
 }
 
-export const getallmenu = createAsyncThunk('getallmenu', async () => {
-  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/menu/allmenu`)
+export const getallmenu = createAsyncThunk('getallmenu', async (loadpage) => {
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/menu/allmenu?page=${loadpage}`)
   const data = await req.json()
   // console.log(data)
   return data
@@ -81,7 +84,15 @@ export const menuSlice = createSlice({
       .addCase(getallmenu.fulfilled, (state, action) => {
         state.loading = false
         // console.log(action.payload)
-        state.menus = action.payload
+        const { allmenu, totalMenuItems, page, totalPages } = action.payload
+        const uniqueMenu = allmenu.filter(
+          (menuItem) => !state.menus.some((item) => item._id === menuItem._id)
+        )
+        state.menus = [...state.menus, ...uniqueMenu]
+        state.page = page
+        state.totalPages = totalPages
+        state.totalmenuItems = totalMenuItems
+
       })
       .addCase(getallmenu.rejected, (state, action) => {
         state.loading = false
@@ -105,7 +116,7 @@ export const menuSlice = createSlice({
       .addCase(deletemenu.fulfilled, (state, action) => {
         state.loading = false
         // console.log(action.payload)
-        state.menus = state.menus.filter(menu => menu._id != action.payload)
+        state.menus = state.menus.filter(menu => menu._id !== action.payload)
       })
       .addCase(deletemenu.rejected, (state, action) => {
         state.loading = false

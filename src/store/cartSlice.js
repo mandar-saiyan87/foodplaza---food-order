@@ -7,7 +7,10 @@ const initialState = {
   delivery: 15,
   freeDelivery: 200,
   loading: false,
-  error: null
+  error: null,
+  page: 1,
+  totalPages: 0,
+  totalOrderItems: 0
 }
 
 
@@ -22,8 +25,8 @@ export const sendtocart = createAsyncThunk('sendtocart', async (cart) => {
   return data
 })
 
-export const getOrders = createAsyncThunk('getOrders', async () => {
-  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`)
+export const getOrders = createAsyncThunk('getOrders', async (loadpage) => {
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders?page=${loadpage}`)
   const data = await req.json()
   return data
 })
@@ -93,7 +96,14 @@ export const cartSlice = createSlice({
     })
       .addCase(getOrders.fulfilled, (state, action) => {
         state.loading = false
-        state.orders = action.payload
+        const { allorders, totalOrderItems, page, totalPages } = action.payload
+        const uniqueOrder = allorders.filter(
+          (orderItem) => !state.orders.some((item) => item._id === orderItem._id)
+        )
+        state.orders = [...state.orders, ...uniqueOrder]
+        state.page = page
+        state.totalPages = totalPages
+        state.totalOrderItems = totalOrderItems
       })
       .addCase(getOrders.rejected, (state, action) => {
         state.loading = false
@@ -117,7 +127,7 @@ export const cartSlice = createSlice({
     })
       .addCase(getordersCurrentUser.fulfilled, (state, action) => {
         state.loading = false
-       state.orders = action.payload
+        state.orders = action.payload
       })
       .addCase(getordersCurrentUser.rejected, (state, action) => {
         state.loading = false
