@@ -37,7 +37,7 @@ const OrdersSection = () => {
           style={{ overflowY: 'hidden' }}
         >
           {allOrders?.map((order) => (
-            <OrderDetailsCard key={order._id} order={order} />
+            <OrderDetailsCard order={order} />
           ))}
         </InfiniteScroll>
       </div>

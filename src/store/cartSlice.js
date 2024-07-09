@@ -106,7 +106,7 @@ export const cartSlice = createSlice({
         state.loading = false
         const { allorders, totalOrderItems, page, totalPages } = action.payload
         const uniqueOrder = allorders?.filter(
-          (orderItem) => !state.orders.some((item) => item._id === orderItem._id)
+          (orderItem) => !state.orders?.some((item) => item._id === orderItem._id)
         )
         state.adminOrders = [...state.adminOrders, ...uniqueOrder]
         state.page = page
