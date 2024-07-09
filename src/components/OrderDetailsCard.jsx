@@ -4,6 +4,8 @@ import { updateOrders } from '../store/cartSlice'
 
 function OrderDetailsCard({ order }) {
 
+  console.log(order)
+
   const dispatch = useDispatch()
 
   const [orderStatus, setOrderStatus] = useState(order.status)
@@ -36,7 +38,7 @@ function OrderDetailsCard({ order }) {
       <hr />
       <div>
         {order.cartitems.map((item) => (
-          <div className='order_items'>
+          <div className='order_items' key={item._id}>
             <p className='item_name'>{item.menuItem.title}</p>
             <p className='item_qty'>x {item.qty}</p>
           </div>
