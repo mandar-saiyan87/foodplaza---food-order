@@ -4,7 +4,6 @@ import { updateOrders } from '../store/cartSlice'
 
 function OrderDetailsCard({ order }) {
 
-  
   const dispatch = useDispatch()
 
   const [orderStatus, setOrderStatus] = useState(order.status)

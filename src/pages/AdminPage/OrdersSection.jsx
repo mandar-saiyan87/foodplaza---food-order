@@ -11,7 +11,6 @@ const OrdersSection = () => {
 
   const currentPage = useSelector((state) => state.cart.page)
   const totalPages = useSelector((state) => state.cart.totalPages)
-  const totalOrderItems = useSelector((state) => state.cart.totalOrderItems)
 
 
   useEffect(() => {
@@ -37,7 +36,9 @@ const OrdersSection = () => {
           style={{ overflowY: 'hidden' }}
         >
           {allOrders?.map((order) => (
-            <OrderDetailsCard order={order} />
+            <>
+              <OrderDetailsCard key={order._id} order={order} />
+            </>
           ))}
         </InfiniteScroll>
       </div>
