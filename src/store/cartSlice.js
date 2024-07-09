@@ -105,7 +105,7 @@ export const cartSlice = createSlice({
         // console.log(action.payload)
         state.loading = false
         const { allorders, totalOrderItems, page, totalPages } = action.payload
-        console.log(allorders)
+        // console.log(allorders)
         // const uniqueOrder = allorders?.filter(
         //   (orderItem) => !state.orders.some((item) => item._id === orderItem._id)
         // )
