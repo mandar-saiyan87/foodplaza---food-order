@@ -105,10 +105,11 @@ export const cartSlice = createSlice({
       .addCase(getOrders.fulfilled, (state, action) => {
         state.loading = false
         const { allorders, totalOrderItems, page, totalPages } = action.payload
-        const uniqueOrder = allorders?.filter(
-          (orderItem) => !state.orders?.some((item) => item._id === orderItem._id)
+        const uniqueOrder = allorders.filter(
+          (orderItem) => !state.orders.some((item) => item._id === orderItem._id)
         )
         state.adminOrders = [...state.adminOrders, ...uniqueOrder]
+        // state.adminOrders = [...allorders]
         state.page = page
         state.totalPages = totalPages
         state.totalOrderItems = totalOrderItems

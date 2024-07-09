@@ -22,7 +22,7 @@ function OrderDetailsCard({ order }) {
 
 
   return (
-    <div key={order._id} className="order_card">
+    <div className="order_card">
       <div className='order_heading'>
         <div className='order_owner'>
           <p className='name'>{order.name}</p>
