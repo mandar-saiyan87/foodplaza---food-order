@@ -17,7 +17,7 @@ const OrdersSection = () => {
     if (allOrders.length === 0) {
       dispatch(getOrders(currentPage))
     }
-  }, [dispatch, allOrders])
+  }, [dispatch])
 
   function fetchMoreOrders() {
     if (currentPage < totalPages) {
@@ -28,19 +28,23 @@ const OrdersSection = () => {
   return (
     <>
       <div className='admin_order_details_main'>
-        <InfiniteScroll
-          dataLength={allOrders?.length}
-          next={fetchMoreOrders}
-          hasMore={currentPage < totalPages}
-          loader={<h4>Loading...</h4>}
-          style={{ overflowY: 'hidden' }}
-        >
-          {allOrders?.map((order) => (
-            <>
-              <OrderDetailsCard key={order._id} order={order} />
-            </>
-          ))}
-        </InfiniteScroll>
+        {allOrders?.length === 0 ?
+          <div>No orders so far</div> :
+
+          <InfiniteScroll
+            dataLength={allOrders?.length}
+            next={fetchMoreOrders}
+            hasMore={currentPage < totalPages}
+            loader={<h4>Loading...</h4>}
+            style={{ overflowY: 'hidden' }}
+          >
+            {allOrders?.map((order) => (
+              <>
+                <OrderDetailsCard key={order._id} order={order} />
+              </>
+            ))}
+          </InfiniteScroll>
+        }
       </div>
     </>
   )
