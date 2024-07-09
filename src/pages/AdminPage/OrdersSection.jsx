@@ -14,7 +14,7 @@ const OrdersSection = () => {
 
 
   useEffect(() => {
-    if (allOrders?.length === 0) {
+    if (allOrders.length === 0) {
       dispatch(getOrders(currentPage))
     }
   }, [dispatch, allOrders])
