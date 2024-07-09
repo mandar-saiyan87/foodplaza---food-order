@@ -50,7 +50,7 @@ function OrderDetailsCard({ order }) {
         </div>
         <div className='order_set_status'>
           <p>Status</p>
-          <select select name="status" id="status" onChange={(e) => updateOrderStatus(e)} value={orderStatus}>
+          <select name="status" id="status" onChange={(e) => updateOrderStatus(e)} value={orderStatus}>
             <option value="pending">pending</option>
             <option value="accepted">accepted</option>
             <option value="in process">in process</option>
