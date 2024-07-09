@@ -15,7 +15,7 @@ const OrdersSection = () => {
 
 
   useEffect(() => {
-    if (allOrders.length === 0) {
+    if (allOrders?.length === 0) {
       dispatch(getOrders(currentPage))
     }
   }, [dispatch])
@@ -30,13 +30,13 @@ const OrdersSection = () => {
     <>
       <div className='admin_order_details_main'>
         <InfiniteScroll
-          dataLength={allOrders.length}
+          dataLength={allOrders?.length}
           next={fetchMoreOrders}
           hasMore={currentPage < totalPages}
           loader={<h4>Loading...</h4>}
           style={{ overflowY: 'hidden' }}
         >
-          {allOrders.map((order) => (
+          {allOrders?.map((order) => (
             <OrderDetailsCard order={order} key={order._id} />
           ))}
         </InfiniteScroll>

@@ -74,7 +74,7 @@ export const cartSlice = createSlice({
       if (menuExist !== -1) {
         state.cartItems[menuExist].qty += qty
         if (state.cartItems[menuExist].qty === 0) {
-          state.cartItems = state.cartItems.filter(menu => menu.qty !== 0)
+          state.cartItems = state.cartItems?.filter(menu => menu.qty !== 0)
         }
       }
     },
@@ -103,7 +103,7 @@ export const cartSlice = createSlice({
       .addCase(getOrders.fulfilled, (state, action) => {
         state.loading = false
         const { allorders, totalOrderItems, page, totalPages } = action.payload
-        const uniqueOrder = allorders.filter(
+        const uniqueOrder = allorders?.filter(
           (orderItem) => !state.orders.some((item) => item._id === orderItem._id)
         )
         state.adminOrders = [...state.adminOrders, ...uniqueOrder]
@@ -135,7 +135,7 @@ export const cartSlice = createSlice({
         state.loading = false
         // state.orders = action.payload
         const { userOrders, totalOrderItems, page, totalPages } = action.payload
-        const uniqueOrder = userOrders.filter(
+        const uniqueOrder = userOrders?.filter(
           (orderItem) => !state.orders.some((item) => item._id === orderItem._id)
         )
         state.orders = [...state.orders, ...uniqueOrder]
