@@ -40,6 +40,7 @@ export const getordersCurrentUser = createAsyncThunk('getordersCurrentUser', asy
   console.log(userid, currentPage)
   const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/currentuser/${userid}?page=${currentPage}`);
   const data = req.json()
+  console.log(data)
   return data
 })
 
@@ -59,8 +60,9 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addtocart: (state, action) => {
-      const { menuItem, qty } = action.payload
+      const { menuItem, qty } = action.payload || {}
       // console.log(action.payload)
+      if (!menuItem || qty == null) return;
       const menuExist = state.cartItems.findIndex(menu => menu.menuItem._id === menuItem._id)
       if (menuExist !== -1) {
         state.cartItems[menuExist].qty += qty
@@ -69,7 +71,8 @@ export const cartSlice = createSlice({
       }
     },
     removefromcart: (state, action) => {
-      const { menuItem, qty } = action.payload
+      const { menuItem, qty } = action.payload || {}
+      if (!menuItem || qty == null) return;
       const menuExist = state.cartItems.findIndex(menu => menu.menuItem._id === menuItem._id)
       if (menuExist !== -1) {
         state.cartItems[menuExist].qty += qty
