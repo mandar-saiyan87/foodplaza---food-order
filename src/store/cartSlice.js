@@ -32,15 +32,14 @@ export const sendtocart = createAsyncThunk('sendtocart', async (cart) => {
 export const getOrders = createAsyncThunk('getOrders', async (loadpage) => {
   const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders?page=${loadpage}`)
   const data = await req.json()
+  console.log(data)
   return data
 })
 
 export const getordersCurrentUser = createAsyncThunk('getordersCurrentUser', async (orders) => {
   const { userid, currentPage } = orders
-  console.log(userid, currentPage)
   const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/currentuser/${userid}?page=${currentPage}`);
   const data = req.json()
-  console.log(data)
   return data
 })
 
