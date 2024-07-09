@@ -110,7 +110,6 @@ export const cartSlice = createSlice({
         //   (orderItem) => !state.orders.some((item) => item._id === orderItem._id)
         // )
         state.adminOrders = [...state.adminOrders, ...allorders]
-        // state.adminOrders = [...allorders]
         state.page = page
         state.totalPages = totalPages
         state.totalOrderItems = totalOrderItems
