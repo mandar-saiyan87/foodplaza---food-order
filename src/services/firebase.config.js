@@ -2,17 +2,16 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: `${process.env.REACT_APP_FIREBASE_API}`,
-  authDomain: "foodplaza-4f4b7.firebaseapp.com",
-  projectId: "foodplaza-4f4b7",
-  storageBucket: "foodplaza-4f4b7.appspot.com",
-  messagingSenderId: "391542024560",
-  appId: "1:391542024560:web:81350614281f69a7f2c7b5"
+  authDomain: "foodplaza-1bc0f.firebaseapp.com",
+  projectId: "foodplaza-1bc0f",
+  storageBucket: "foodplaza-1bc0f.firebasestorage.app",
+  messagingSenderId: "720736610072",
+  appId: "1:720736610072:web:68e4e427e1f48ef9c1606d",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app)
+export const auth = getAuth(app);
