@@ -1,12 +1,17 @@
-import React from 'react'
+import React from "react";
 
 function Logo() {
   return (
-    <div className='logo'>
-      <p className='prm'>FOOD</p>
-      <p className='sec'>PLAZA<span><div></div></span></p>
+    <div className="logo">
+      <p className="prm">FOOD</p>
+      <div className="sec">
+        PLAZA
+        <span>
+          <div className="dot"></div>
+        </span>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Logo
+export default Logo;

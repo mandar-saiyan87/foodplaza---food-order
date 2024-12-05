@@ -17,84 +17,96 @@ import Error404 from "./pages/Error404";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { store, persistor } from "./store/store";
 import { Provider } from "react-redux";
-import { PersistGate } from 'redux-persist/integration/react'
-
-
+import { PersistGate } from "redux-persist/integration/react";
+import { ClerkProvider } from "@clerk/clerk-react";
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <div className="App">
-      <Navbar />
-      <Outlet />
-      <Footer />
-    </div>,
+    path: "/",
+    element: (
+      <div className="App">
+        <Navbar />
+        <Outlet />
+        <Footer />
+      </div>
+    ),
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Homepage />,
       },
       {
-        path: '/about',
-        element: <About />
+        path: "/about",
+        element: <About />,
       },
       {
-        path: '/contact',
-        element: <Contact />
+        path: "/contact",
+        element: <Contact />,
       },
       {
-        path: '/cart',
-        element: <Cart />
+        path: "/cart",
+        element: <Cart />,
       },
       {
-        path: '/menu/:id',
-        element: <MenuDetails />
+        path: "/menu/:id",
+        element: <MenuDetails />,
       },
       {
-        path: '/orderview/:userid',
-        element: <UserOrders />
+        path: "/orderview/:userid",
+        element: <UserOrders />,
       },
     ],
-    errorElement: <Error404 />
+    errorElement: <Error404 />,
   },
   {
-    path: '/admin',
-    element: <div className="App">
-      <Admin />
-    </div>,
+    path: "/admin",
+    element: (
+      <div className="App">
+        <Admin />
+      </div>
+    ),
     children: [
       {
-        path: '/admin/Categories',
-        element: <CategorySection />
+        path: "/admin/Categories",
+        element: <CategorySection />,
       },
       {
-        path: '/admin/MenuItems',
-        element: <MenuItemSection />
+        path: "/admin/MenuItems",
+        element: <MenuItemSection />,
       },
       {
-        path: '/admin/AddItem',
-        element: <AddmenuSection />
+        path: "/admin/AddItem",
+        element: <AddmenuSection />,
       },
       {
-        path: '/admin/Orders',
-        element: <OrdersSection />
+        path: "/admin/Orders",
+        element: <OrdersSection />,
       },
     ],
-    errorElement: <Error404 />
+    errorElement: <Error404 />,
   },
   {
-    path: '/admin/login',
-    element: <AdminLogin />
-  }
-])
+    path: "/admin/login",
+    element: <AdminLogin />,
+  },
+]);
 
+const PUBLISHABLE_KEY = process.env.REACT_APP_CLERK_API;
 
+if (!PUBLISHABLE_KEY) {
+  throw new Error("Missing Publishable Key");
+}
 
 function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <RouterProvider router={router} />
+        <ClerkProvider
+          publishableKey={PUBLISHABLE_KEY}
+          afterSignOutUrl="http://localhost:3000/"
+        >
+          <RouterProvider router={router} />
+        </ClerkProvider>
       </PersistGate>
     </Provider>
   );

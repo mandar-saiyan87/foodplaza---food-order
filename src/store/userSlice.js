@@ -8,15 +8,16 @@ const initialState = {
   error: null,
 };
 
-export const addUser = createAsyncThunk("addUser", async (userPhNum) => {
-  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/user`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(userPhNum),
-  });
-  const data = await req.json();
-  // console.log(data)
-  return data;
+export const addUser = createAsyncThunk("addUser", async (currentUser) => {
+  console.log(currentUser);
+  // const req = await fetch(`${process.env.REACT_APP_API_URL}/api/user`, {
+  //   method: "POST",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify(currentUser),
+  // });
+  // const data = await req.json();
+  // // console.log(data);
+  // return data;
 });
 
 export const adminlogin = createAsyncThunk("adminlogin", async (usercreds) => {
@@ -63,7 +64,7 @@ export const userSlice = createSlice({
       })
       .addCase(addUser.fulfilled, (state, action) => {
         state.loading = false;
-        // console.log(action.payload)
+        // console.log(action.payload);
         state.dbUser = action.payload;
       })
       .addCase(addUser.rejected, (state, action) => {
