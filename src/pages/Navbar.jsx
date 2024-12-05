@@ -9,8 +9,8 @@ import Login from "./Login/Login.jsx";
 import { useUser } from "@clerk/clerk-react";
 
 function Navbar() {
-  const { isSignedIn, user } = useUser();
   const dispatch = useDispatch();
+  const { isSignedIn, user } = useUser();
 
   const navigate = useNavigate();
 
@@ -70,6 +70,12 @@ function Navbar() {
     };
   });
 
+  useEffect(() => {
+    if (isSignedIn && user) {
+      console.log(user);
+    }
+  }, [isSignedIn, user]);
+
   const navmenu = [
     {
       name: "Menu",
@@ -88,12 +94,6 @@ function Navbar() {
   useEffect(() => {
     dispatch(searchMenu(searchDish));
   }, [searchDish]);
-
-  useEffect(() => {
-    if (isSignedIn && user) {
-      console.log(user);
-    }
-  }, [isSignedIn, user]);
 
   return (
     <>

@@ -18,7 +18,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { store, persistor } from "./store/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { ClerkProvider } from "@clerk/clerk-react";
+import { ClerkProvider, SignedIn } from "@clerk/clerk-react";
 
 const router = createBrowserRouter([
   {

@@ -4,7 +4,7 @@ import { authSet, addUser } from "../../store/userSlice";
 import { SignIn, useUser } from "@clerk/clerk-react";
 
 function Login({ showModal }) {
-  const { isSignedIn, user } = useUser();
+  const { user } = useUser();
 
   const dispatch = useDispatch();
 
@@ -12,7 +12,7 @@ function Login({ showModal }) {
     <>
       <div className="login_overlay" onClick={() => showModal(false)}>
         <div className="login_main" onClick={(e) => e.stopPropagation()}>
-          {!user && <SignIn />}
+          {!user && <SignIn forceRedirectUrl={"/"} />}
         </div>
       </div>
     </>
