@@ -172,6 +172,33 @@ img {
 
 /* ********************* Navbar ********************* */
 
+.googlesignin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 0;
+  /* background-color: rgb(233, 233, 233); */
+  /* background-color: rgb(202, 202, 202); */
+}
+
+.imgdiv {
+  width: 9%;
+}
+
+.googlesignin .imgdiv img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.googlesignin p {
+  font-size: medium;
+  font-weight: 500;
+}
+
 /* ***** LOGO ******* */
 .logo {
   color: var(--primary-color);
@@ -346,8 +373,14 @@ img {
 
 .logout {
   cursor: pointer;
-  width: 1.2rem;
   position: relative;
+}
+
+.userlogged {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: fill;
 }
 
 .user_options {
@@ -884,6 +917,10 @@ img {
 
 .login_main {
   background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
   /* padding: 1rem; */
 }
 

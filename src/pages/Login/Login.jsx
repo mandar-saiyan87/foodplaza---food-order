@@ -1,18 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { authSet, addUser } from "../../store/userSlice";
-import { SignIn, useUser } from "@clerk/clerk-react";
+import { signInWithGooglePopup } from "../../firebase";
+import { assets } from "../../assets/assets";
 
 function Login({ showModal }) {
-  const { user } = useUser();
-
   const dispatch = useDispatch();
+
+  async function loginGoogleUser() {
+    const res = await signInWithGooglePopup();
+    try {
+      showModal(false);
+      dispatch(
+        addUser({
+          useremail: res.user.email,
+          displayname: res.user.displayName,
+          accToken: res.user.accessToken,
+        })
+      );
+      authSet({
+        useremail: res.user.email,
+        displayname: res.user.displayName,
+        accToken: res.user.accessToken,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
       <div className="login_overlay" onClick={() => showModal(false)}>
         <div className="login_main" onClick={(e) => e.stopPropagation()}>
-          {!user && <SignIn forceRedirectUrl={"/"} />}
+          <button className="googlesignin" onClick={loginGoogleUser}>
+            <div className="imgdiv">
+              <img src={assets.googlelogin} alt="googlelogin" />
+            </div>
+            <p>Sign in with Google</p>
+          </button>
         </div>
       </div>
     </>

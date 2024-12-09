@@ -6,11 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchMenu } from "../store/menuSlice.js";
 import { unsetAuth } from "../store/userSlice.js";
 import Login from "./Login/Login.jsx";
-import { useUser } from "@clerk/clerk-react";
+import { signOutFromGoogle } from "../firebase.js";
 
 function Navbar() {
   const dispatch = useDispatch();
-  const { isSignedIn, user } = useUser();
 
   const navigate = useNavigate();
 
@@ -19,7 +18,7 @@ function Navbar() {
   const isloggedIn = useSelector((state) => state.user.token);
   const isDbUser = useSelector((state) => state.user.dbUser);
 
-  // console.log(isDbUser)
+  // console.log(isDbUser);
 
   const searchRef = useRef(null);
 
@@ -52,6 +51,7 @@ function Navbar() {
   }
 
   function logoutUser() {
+    signOutFromGoogle();
     dispatch(unsetAuth());
     navigate("/");
   }
@@ -69,12 +69,6 @@ function Navbar() {
       document.removeEventListener("click", closeSearch);
     };
   });
-
-  useEffect(() => {
-    if (isSignedIn && user) {
-      console.log(user);
-    }
-  }, [isSignedIn, user]);
 
   const navmenu = [
     {
@@ -176,7 +170,11 @@ function Navbar() {
               onClick={() => setUserOptions(!userOptions)}
               ref={userOptionsref}
             >
-              <img src={assets.profile_icon} alt="logout" />
+              <img
+                src={assets.profile_icon}
+                alt="logout"
+                className="profile_pic"
+              />
               {userOptions && (
                 <div className="user_options">
                   <ul>

@@ -18,7 +18,6 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { store, persistor } from "./store/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { ClerkProvider, SignedIn } from "@clerk/clerk-react";
 
 const router = createBrowserRouter([
   {
@@ -91,22 +90,11 @@ const router = createBrowserRouter([
   },
 ]);
 
-const PUBLISHABLE_KEY = process.env.REACT_APP_CLERK_API;
-
-if (!PUBLISHABLE_KEY) {
-  throw new Error("Missing Publishable Key");
-}
-
 function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ClerkProvider
-          publishableKey={PUBLISHABLE_KEY}
-          afterSignOutUrl="http://localhost:3000/"
-        >
-          <RouterProvider router={router} />
-        </ClerkProvider>
+        <RouterProvider router={router} />
       </PersistGate>
     </Provider>
   );
