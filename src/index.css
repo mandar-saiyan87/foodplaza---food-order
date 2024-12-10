@@ -306,8 +306,8 @@ img {
   gap: 0.5rem;
   background-color: white;
   position: absolute;
-  top: 2.3rem;
-  right: 10rem;
+  top: 100%;
+  right: 70%;
   padding: 0.5rem;
   width: max-content;
   border: 1px solid var(--primary-color);
