@@ -16,7 +16,7 @@ Check out the live app: [Food Order App](https://foodplaza-ten.vercel.app)
 
 ## Features
 
-- \*\*User Login with Google account: Users can log in using their goggle account for secure authentication.
+- **User Login with Google account**: Users can log in using their goggle account for secure authentication.
 - **Add to Cart**: Users can add dishes to their cart for ordering.
 - **Browse Dishes by Category**: Users can easily browse dishes categorized for convenience.
 - **Order History**: Users can view their past orders and reorder their favorite dishes.
