@@ -15,9 +15,10 @@ import UserOrders from "./pages/UserOders/UserOrders";
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
 import Error404 from "./pages/Error404";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import { store, persistor } from "./store/store";
+// import { store, persistor } from "./store/store";
+import { store } from "./store/store";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
+// import { PersistGate } from "redux-persist/integration/react";
 
 const router = createBrowserRouter([
   {
@@ -93,9 +94,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <RouterProvider router={router} />
-      </PersistGate>
+      {/* <PersistGate loading={null} persistor={persistor}> */}
+      <RouterProvider router={router} />
+      {/* </PersistGate> */}
     </Provider>
   );
 }

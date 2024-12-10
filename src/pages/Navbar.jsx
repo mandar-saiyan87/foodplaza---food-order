@@ -5,6 +5,7 @@ import { NavLink, useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { searchMenu } from "../store/menuSlice.js";
 import { unsetAuth } from "../store/userSlice.js";
+import { ordersReset } from "../store/cartSlice.js";
 import Login from "./Login/Login.jsx";
 import { signOutFromGoogle } from "../firebase.js";
 
@@ -52,6 +53,7 @@ function Navbar() {
 
   function logoutUser() {
     signOutFromGoogle();
+    dispatch(ordersReset());
     dispatch(unsetAuth());
     navigate("/");
   }

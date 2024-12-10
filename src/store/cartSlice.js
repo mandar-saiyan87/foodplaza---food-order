@@ -38,6 +38,7 @@ export const getOrders = createAsyncThunk("getOrders", async (loadpage) => {
     `${process.env.REACT_APP_API_URL}/api/orders?page=${loadpage}`
   );
   const data = await req.json();
+  // console.log(data);
   return data;
 });
 
@@ -98,6 +99,10 @@ export const cartSlice = createSlice({
     resetOrderSuccess: (state) => {
       state.orderSuccess = "";
     },
+    ordersReset: (state) => {
+      state.adminOrders = [];
+      state.orders = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -122,12 +127,18 @@ export const cartSlice = createSlice({
       .addCase(getOrders.fulfilled, (state, action) => {
         // console.log(action.payload)
         state.loading = false;
-        const { allorders, totalOrderItems, page, totalPages } = action.payload;
+        const {
+          allorders = [],
+          totalOrderItems,
+          page,
+          totalPages,
+        } = action.payload;
         // console.log(allorders)
         // const uniqueOrder = allorders?.filter(
-        //   (orderItem) => !state.orders.some((item) => item._id === orderItem._id)
-        // )
-        state.adminOrders = [...state.adminOrders, ...allorders];
+        //   (orderItem) =>
+        //     !state.orders.some((item) => item._id === orderItem._id)
+        // );
+        state.adminOrders = [...(state.adminOrders || []), ...allorders];
         state.page = page;
         state.totalPages = totalPages;
         state.totalOrderItems = totalOrderItems;
@@ -160,13 +171,17 @@ export const cartSlice = createSlice({
         state.loading = false;
         // console.log(action.payload);
         // state.orders = action.payload
-        const { userOrders, totalOrderItems, page, totalPages } =
-          action.payload;
-        const uniqueOrder = userOrders?.filter(
+        const {
+          userOrders = [],
+          totalOrderItems,
+          page,
+          totalPages,
+        } = action.payload;
+        const uniqueOrder = userOrders.filter(
           (orderItem) =>
             !state.orders.some((item) => item._id === orderItem._id)
         );
-        state.orders = [...state.orders, ...uniqueOrder];
+        state.orders = [...(state.orders || []), ...uniqueOrder];
         state.userpage = page;
         state.usertotalPages = totalPages;
         state.usertotalOrderItems = totalOrderItems;
@@ -178,7 +193,7 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addtocart, removefromcart, resetOrderSuccess } =
+export const { addtocart, removefromcart, resetOrderSuccess, ordersReset } =
   cartSlice.actions;
 
 export default cartSlice.reducer;

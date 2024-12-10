@@ -4,52 +4,52 @@ import Users from "./UserSchema.js";
 const CartSchema = mongoose.Schema({
   menuItem: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'menus',
-    required: true
+    ref: "menus",
+    required: true,
   },
   qty: {
     type: Number,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
 const OrdersSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'users',
-    required: true
+    ref: "users",
+    required: true,
   },
   cartitems: [CartSchema],
   totalAmount: {
     type: Number,
-    required: true
+    required: true,
   },
   deliveryfees: {
     type: Number,
-    required: true
+    required: true,
   },
   status: {
     type: String,
-    enum: ['pending', 'accepted', 'in process', 'delivered', 'cancelled'],
-    default: 'pending'
+    enum: ["pending", "accepted", "in process", "delivered", "cancelled"],
+    default: "pending",
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   address: {
     type: String,
-    required: true
+    required: true,
   },
   phno: {
     type: String,
-    required: true
+    required: true,
   },
   created: {
     type: Date,
-    default: Date.now
-  }
-})
+    default: Date.now,
+  },
+});
 
-const Orders = mongoose.model('orders', OrdersSchema)
-export default Orders
+const Orders = mongoose.model("orders", OrdersSchema);
+export default Orders;

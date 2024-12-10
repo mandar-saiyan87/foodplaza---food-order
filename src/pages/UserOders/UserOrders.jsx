@@ -13,7 +13,7 @@ function UserOrders() {
 
   const allOrders = useSelector((state) => state.cart.orders);
 
-  console.log(allOrders);
+  // console.log(allOrders);
   const currentPage = useSelector((state) => state.cart.userpage);
   const totalPages = useSelector((state) => state.cart.usertotalPages);
   const totalOrderItems = useSelector(
@@ -45,7 +45,7 @@ function UserOrders() {
             <div>
               <p className="order_page_title">Your Order history</p>
               {allOrders.map((order) => (
-                <UserOrderCard order={order} key={order?._id} />
+                <UserOrderCard key={order._id} order={order} />
               ))}
             </div>
           ) : (

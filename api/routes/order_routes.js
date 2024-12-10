@@ -34,9 +34,6 @@ router.get("/currentuser/:id", async (req, res) => {
   const perPage = 4;
   const totalOrderItems = await Orders.countDocuments();
   const totalPages = Math.ceil(totalOrderItems / perPage);
-  // console.log(user);
-  // console.log(page);
-  // console.log(UserId)
   try {
     const userOrders = await Orders.find({ user: user })
       .populate("cartitems.menuItem")

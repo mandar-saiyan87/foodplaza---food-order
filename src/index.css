@@ -1051,6 +1051,7 @@ img {
 }
 
 .admin_header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1072,8 +1073,8 @@ img {
 
 .admin_logout_btn {
   position: absolute;
-  top: 8%;
-  right: 4.5%;
+  top: 65%;
+  right: 1%;
   background-color: white;
   font-size: 0.9rem;
   display: flex;
