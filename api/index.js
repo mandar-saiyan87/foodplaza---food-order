@@ -4,7 +4,9 @@ import { connectDB } from './db.js'
 import menuroutes from './routes/menu_route.js'
 import userroutes from './routes/user_route.js'
 import orderroutes from './routes/order_routes.js'
+import dns from 'dns'
 
+dns.setServers(['8.8.8.8', '8.8.4.4'])
 
 connectDB()
 const app = express()

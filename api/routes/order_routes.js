@@ -16,6 +16,7 @@ router.get("", async (req, res) => {
       .skip((page - 1) * perPage)
       .limit(perPage);
     if (allorders.length > 0) {
+
       return res
         .status(200)
         .json({ allorders, totalOrderItems, page, totalPages });
@@ -76,22 +77,57 @@ router.post("", async (req, res) => {
   }
 });
 
-router.put("", async (req, res) => {
-  const updatedOrder = req.body;
+// router.put("", async (req, res) => {
+//   const updatedOrder = req.body;
+//   try {
+//     const updated = await Orders.findByIdAndUpdate(
+//       updatedOrder._id,
+//       updatedOrder,
+//       { new: true }
+//     );
+//     if (!updated) {
+//       return res.status(404).send("Order not found");
+//     }
+//     return res.status(200).json(updated);
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).send("Internal server error");
+//   }
+// });
+
+router.patch("/:orderId", async (req, res) => {
+  const orderId = req.params.orderId;
+  const updates = req.body;
+
+  // console.log("Order ID:", orderId);
+  // console.log("Updates:", updates);
+
   try {
-    const updated = await Orders.findByIdAndUpdate(
-      updatedOrder._id,
-      updatedOrder,
-      { new: true }
-    );
-    if (!updated) {
+    let order = await Orders.findById(orderId);
+    if (!order) {
       return res.status(404).send("Order not found");
     }
-    return res.status(200).json(updated);
+
+    // Update only the fields that are present in the request body
+    Object.keys(updates).forEach(key => {
+      order[key] = updates[key];
+    });
+
+    const updatedOrder = await order.save();
+
+    return res.status(200).json(updatedOrder);
   } catch (error) {
     console.error(error);
     return res.status(500).send("Internal server error");
   }
 });
 
+
+
+
+
+
 export default router;
+
+
+

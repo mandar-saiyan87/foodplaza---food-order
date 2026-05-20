@@ -2,6 +2,12 @@ import mongoose from "mongoose";
 import bcrypt from 'bcrypt';
 import { Admin } from "./models/UserSchema.js";
 import { connectDB } from "./db.js";
+import dotenv from 'dotenv';
+// import dns from 'dns'
+
+// dns.setServers(['8.8.8.8', '8.8.4.4'])
+
+dotenv.config();
 
 
 // Create Admin user
@@ -12,7 +18,8 @@ async function createAdmin(username, passwd) {
 
     const newAdmin = await new Admin({
       username,
-      password: passwordhash
+      password: passwordhash,
+      role: "admin"
     })
     await newAdmin.save();
     console.log('Admin user created successfully');
@@ -25,8 +32,8 @@ async function createAdmin(username, passwd) {
 async function main() {
   await connectDB()
 
-  const username = 'admin'
-  const password = 'admin1234##'
+  const username = process.env.ADMIN_USERNAME;
+  const password = process.env.ADMIN_PASSWORD;
 
   await createAdmin(username, password)
 }

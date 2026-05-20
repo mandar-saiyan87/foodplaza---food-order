@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateOrders } from '../store/cartSlice'
 
@@ -13,7 +13,7 @@ function OrderDetailsCard({ order }) {
     setOrderStatus(status)
 
     const updatedOrder = {
-      ...order,
+      id: order._id,
       status: status
     }
 

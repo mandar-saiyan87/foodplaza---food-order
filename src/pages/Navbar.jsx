@@ -274,9 +274,9 @@ function Navbar() {
                   Sign In
                 </button>
               ) : (
-                <div className="mobile_logout" onClick={logoutUser}>
-                  <img src={assets.logout_icon} alt="logout" />
-                </div>
+                <button className="mobile_sign_in" onClick={logoutUser}>
+                  Logout
+                </button>
               )}
             </div>
           </div>

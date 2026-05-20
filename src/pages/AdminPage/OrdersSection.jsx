@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getOrders } from "../../store/cartSlice";
 import OrderDetailsCard from "../../components/OrderDetailsCard";
@@ -7,6 +7,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 const OrdersSection = () => {
   const dispatch = useDispatch();
   const allOrders = useSelector((state) => state.cart.adminOrders);
+  const loading = useSelector((state) => state.cart.loading);
+
 
   // console.log(allOrders);
 
@@ -14,7 +16,7 @@ const OrdersSection = () => {
   const totalPages = useSelector((state) => state.cart.totalPages);
 
   useEffect(() => {
-    if (allOrders.length === 0) {
+    if (!loading && allOrders.length === 0) {
       dispatch(getOrders(currentPage));
     }
   }, [dispatch]);

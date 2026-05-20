@@ -38,7 +38,7 @@ export const getOrders = createAsyncThunk("getOrders", async (loadpage) => {
     `${process.env.REACT_APP_API_URL}/api/orders?page=${loadpage}`
   );
   const data = await req.json();
-  // console.log(data);
+  console.log(data);
   return data;
 });
 
@@ -56,11 +56,11 @@ export const getordersCurrentUser = createAsyncThunk(
   }
 );
 
-export const updateOrders = createAsyncThunk("updateOrders", async (order) => {
-  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
-    method: "PUT",
+export const updateOrders = createAsyncThunk("updateOrders", async (updatedOrder) => {
+  const req = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/${updatedOrder.id}`, {
+    method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(order),
+    body: JSON.stringify({ status: updatedOrder.status }),
   });
   const data = await req.json();
   return data;
@@ -134,11 +134,11 @@ export const cartSlice = createSlice({
           totalPages,
         } = action.payload;
         // console.log(allorders)
-        // const uniqueOrder = allorders?.filter(
-        //   (orderItem) =>
-        //     !state.orders.some((item) => item._id === orderItem._id)
-        // );
-        state.adminOrders = [...(state.adminOrders || []), ...allorders];
+        const uniqueOrder = allorders?.filter(
+          (orderItem) =>
+            !state.adminOrders.some((item) => item._id === orderItem._id)
+        );
+        state.adminOrders = [...(state.adminOrders || []), ...uniqueOrder];
         state.page = page;
         state.totalPages = totalPages;
         state.totalOrderItems = totalOrderItems;
