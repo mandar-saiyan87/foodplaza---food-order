@@ -16,9 +16,9 @@ function UserOrders() {
   // console.log(allOrders);
   const currentPage = useSelector((state) => state.cart.userpage);
   const totalPages = useSelector((state) => state.cart.usertotalPages);
-  const totalOrderItems = useSelector(
-    (state) => state.cart.usertotalOrderItems
-  );
+  // const totalOrderItems = useSelector(
+  //   (state) => state.cart.usertotalOrderItems
+  // );
 
   useEffect(() => {
     dispatch(getordersCurrentUser({ userid, currentPage }));

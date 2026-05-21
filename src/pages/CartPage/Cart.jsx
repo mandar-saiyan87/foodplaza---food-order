@@ -286,18 +286,18 @@ export default Cart;
 //             <button className='proceed_button'>Proceed to Pay</button>
 //           </div >
 
-{
-  /* < form className = 'delivery_form' >
-          <div className='form_div'>
-            <input type="text" id='fname' name='fname' placeholder='first name' />
-            <input type="text" id='lname' name='lname' placeholder='last name' />
-          </div>
-          <input type="text" id='address' name='address' placeholder='address' />
-          <div className='form_div'>
-            <input type="text" id='city' name='city' placeholder='city' />
-            <input type="number" id='pin' name='pin' placeholder='pin' />
-          </div>
-          <input type="text" id='state' name='state' placeholder='state' />
-          <input type="number" id='phone' name='phone' placeholder='phone' />
-        </ > */
-}
+
+  // < form className = 'delivery_form' >
+  //         <div className='form_div'>
+  //           <input type="text" id='fname' name='fname' placeholder='first name' />
+  //           <input type="text" id='lname' name='lname' placeholder='last name' />
+  //         </div>
+  //         <input type="text" id='address' name='address' placeholder='address' />
+  //         <div className='form_div'>
+  //           <input type="text" id='city' name='city' placeholder='city' />
+  //           <input type="number" id='pin' name='pin' placeholder='pin' />
+  //         </div>
+  //         <input type="text" id='state' name='state' placeholder='state' />
+  //         <input type="number" id='phone' name='phone' placeholder='phone' />
+  //       </form> 
+

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { food_list } from '../assets/assets.js'
+// import { food_list } from '../assets/assets.js'
 
 
 const initialState = {

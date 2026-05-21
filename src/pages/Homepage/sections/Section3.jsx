@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import DishCard from '../../../components/DishCard.jsx';
@@ -16,7 +16,7 @@ function Section3() {
 
   const currentPage = useSelector((state) => state.menu.page)
   const totalPages = useSelector((state) => state.menu.totalPages)
-  const totalMenuItems = useSelector((state) => state.menu.totalmenuItems)
+  // const totalMenuItems = useSelector((state) => state.menu.totalmenuItems)
 
 
   // console.log(menuItems)

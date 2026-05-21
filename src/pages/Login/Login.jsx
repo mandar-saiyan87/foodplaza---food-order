@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { authSet, addUser } from "../../store/userSlice";
 import { signInWithGooglePopup } from "../../firebase";
@@ -46,12 +46,7 @@ function Login({ showModal }) {
 
 export default Login;
 
-{
-  /* <div className='login_heading'>
-            <img src={assets.shield} alt="shield" />
-            <p>Login</p>
-          </div> */
-}
+
 // <div className='toggle_div'>
 //   <div className='form_div_login'>
 //     <div className='login_form'>

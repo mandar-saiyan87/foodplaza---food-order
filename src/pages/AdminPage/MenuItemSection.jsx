@@ -13,7 +13,7 @@ const MenuItemSection = () => {
 
   const currentPage = useSelector((state) => state.menu.page)
   const totalPages = useSelector((state) => state.menu.totalPages)
-  const totalMenuItems = useSelector((state) => state.menu.totalmenuItems)
+  // const totalMenuItems = useSelector((state) => state.menu.totalmenuItems)
 
   const dispatch = useDispatch()
 
@@ -49,7 +49,7 @@ const MenuItemSection = () => {
 
   useEffect(() => {
     dispatch(getallmenu(currentPage))
-  }, [dispatch])
+  }, [dispatch, currentPage])
 
   function fetchMoreMenu() {
     if (currentPage < totalPages) {

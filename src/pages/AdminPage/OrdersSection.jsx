@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect  } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getOrders } from "../../store/cartSlice";
 import OrderDetailsCard from "../../components/OrderDetailsCard";
@@ -19,6 +19,7 @@ const OrdersSection = () => {
     if (!loading && allOrders.length === 0) {
       dispatch(getOrders(currentPage));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   function fetchMoreOrders() {
