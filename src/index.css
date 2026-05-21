@@ -342,14 +342,14 @@ img {
   background-color: var(--primary-color);
   color: white;
   border-radius: 2rem;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
 }
 
 .sign_in:hover {
   color: var(--primary-color);
   background-color: white;
-  border: 1px solid var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .close_button {
@@ -361,14 +361,14 @@ img {
   background-color: var(--secondary-color);
   color: white;
   border-radius: 2rem;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
 }
 
 .close_button:hover {
   color: var(--secondary-color);
   background-color: white;
-  border: 1px solid var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
 .logout {
