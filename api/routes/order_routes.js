@@ -1,5 +1,6 @@
 import express from "express";
 import Orders from "../models/Orders.js";
+import { getIo } from "../socket.js";
 
 const router = express.Router();
 
@@ -109,13 +110,25 @@ router.patch("/:orderId", async (req, res) => {
     }
 
     // Update only the fields that are present in the request body
-    Object.keys(updates).forEach(key => {
-      order[key] = updates[key];
-    });
+    if (order.status !== "delivered") {
 
-    const updatedOrder = await order.save();
+      Object.keys(updates).forEach(key => {
+        order[key] = updates[key];
+      });
 
-    return res.status(200).json(updatedOrder);
+      const updatedOrder = await order.save();
+
+      // Emmit real-time update
+      const io = getIo();
+      io.to(`order-${orderId}`).emit("order-updated", {
+        orderid: updatedOrder._id,
+        status: updatedOrder.status
+      });
+
+      return res.status(200).json(updatedOrder);
+    }
+
+    return res.status(400).send("Order is already delivered, can not be updated");
   } catch (error) {
     console.error(error);
     return res.status(500).send("Internal server error");

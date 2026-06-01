@@ -1,6 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSocket } from "../AppContext/SocketContext"
 
 function UserOrderCard({ order }) {
+
+  const [status, setStatus] = useState(order.status)
+
+  const socket = useSocket()
+
+  useEffect(() => {
+    // Join the room for this specific order to receive updates
+    socket.emit('join-order', `order-${order._id}`)
+
+    // Listen for order status updates
+    socket.on("order-updated", (updatedOrder) => {
+      // console.log(`Order ${order._id} status updated to: ${newStatus}`);
+      if (updatedOrder.orderid === order._id) {
+
+        setStatus(updatedOrder.status)
+      }
+    })
+    // Cleanup: leave room and remove listener when component unmounts
+    return () => {
+      socket.off('order-updated');
+      socket.emit('leave-room', `order-${order._id}`);
+    }
+
+  }, [socket, order._id])
+
   // console.log(order);
   return (
     <div className="userorder_card" key={order._id}>
@@ -13,12 +39,12 @@ function UserOrderCard({ order }) {
         <div className="userorder_status">
           <p
             style={
-              order.status === "delivered"
+              status === "delivered"
                 ? { color: "green" }
                 : { color: "rgb(242, 125, 36)" }
             }
           >
-            {order.status}
+            {status}
           </p>
         </div>
       </div>

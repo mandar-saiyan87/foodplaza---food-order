@@ -19,6 +19,9 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 // import { PersistGate } from "redux-persist/integration/react";
+import SocketProvider from "./AppContext/SocketContext";
+
+const socketUrl = process.env.REACT_APP_API_URL
 
 const router = createBrowserRouter([
   {
@@ -95,7 +98,9 @@ function App() {
   return (
     <Provider store={store}>
       {/* <PersistGate loading={null} persistor={persistor}> */}
-      <RouterProvider router={router} />
+      <SocketProvider socketUrl={socketUrl}>
+        <RouterProvider router={router} />
+      </SocketProvider>
       {/* </PersistGate> */}
     </Provider>
   );
