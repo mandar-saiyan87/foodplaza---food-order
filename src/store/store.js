@@ -9,16 +9,16 @@ import { configureStore } from "@reduxjs/toolkit";
 //   PURGE,
 //   REGISTER,
 // } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+// import storage from "redux-persist/lib/storage";
 import menuReducer from "./menuSlice";
 import cartReducer from "./cartSlice";
 import userReducer from "./userSlice";
 import categoryReducer from "./categorySlice";
 
-const persistConfig = {
-  key: "root",
-  storage,
-};
+// const persistConfig = {
+//   key: "root",
+//   storage,
+// };
 
 // const MenuPersistedReducer = persistReducer(persistConfig, menuReducer);
 // const CartPersistedReducer = persistReducer(persistConfig, cartReducer);

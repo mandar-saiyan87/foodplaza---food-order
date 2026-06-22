@@ -32,6 +32,7 @@ function UserOrderCard({ order }) {
     <div className="userorder_card" key={order._id}>
       <div className="userorder_heading">
         <div className="userorder_owner">
+          <p className="orderid">#Order-{order._id.toString().toUpperCase().slice(0, 10)}</p>
           <p className="name">{order.name}</p>
           <p className="contact">{order.phno}</p>
           <p className="address">{order.address}</p>
@@ -50,8 +51,8 @@ function UserOrderCard({ order }) {
       </div>
       <hr />
       <div>
-        {order.cartitems.map((item) => (
-          <div className="userorder_items">
+        {order?.cartitems.map((item, index) => (
+          <div className="userorder_items" key={item._id ?? index}>
             <p className="item_name">{item.menuItem.title}</p>
             <p className="item_qty">x {item.qty}</p>
           </div>

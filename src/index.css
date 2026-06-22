@@ -1420,11 +1420,19 @@ select {
   justify-content: space-between;
 }
 
+.orderid {
+  color: black;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0.8rem 0;;
+}
+
 .userorder_owner .name,
 .userorder_owner .contact {
   color: black;
   font-weight: 600;
 }
+
 
 .userorder_owner .address {
   color: var(--tertiary-color);

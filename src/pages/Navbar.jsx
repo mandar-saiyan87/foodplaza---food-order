@@ -19,7 +19,6 @@ function Navbar() {
   const isloggedIn = useSelector((state) => state.user.token);
   const isDbUser = useSelector((state) => state.user.dbUser);
 
-  // console.log(isDbUser);
 
   const searchRef = useRef(null);
 

@@ -114,6 +114,7 @@ export const cartSlice = createSlice({
         state.orders.push(action.payload);
         state.orderSuccess = "Success";
         state.cartItems = [];
+        state.userpage = 1;
       })
       .addCase(sendtocart.rejected, (state, action) => {
         state.loading = false;
@@ -138,7 +139,13 @@ export const cartSlice = createSlice({
           (orderItem) =>
             !state.adminOrders.some((item) => item._id === orderItem._id)
         );
-        state.adminOrders = [...(state.adminOrders || []), ...uniqueOrder];
+
+        if (page === 1) {
+          state.adminOrders = allorders
+        } else {
+          state.adminOrders = [...state.adminOrders, ...uniqueOrder]
+        }
+        state.adminOrders = state.adminOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         state.page = page;
         state.totalPages = totalPages;
         state.totalOrderItems = totalOrderItems;
@@ -177,11 +184,17 @@ export const cartSlice = createSlice({
           page,
           totalPages,
         } = action.payload;
-        const uniqueOrder = userOrders.filter(
-          (orderItem) =>
-            !state.orders.some((item) => item._id === orderItem._id)
-        );
-        state.orders = [...(state.orders || []), ...uniqueOrder];
+
+        if (page === 1) {
+          state.orders = userOrders
+        } else { 
+          const uniqueOrder = userOrders.filter(
+            (orderItem) =>
+              !state.orders.some((item) => item._id === orderItem._id)
+          );
+          state.orders = [...(state.orders || []), ...uniqueOrder];
+        }
+        
         state.userpage = page;
         state.usertotalPages = totalPages;
         state.usertotalOrderItems = totalOrderItems;

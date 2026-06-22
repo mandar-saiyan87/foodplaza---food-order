@@ -25,6 +25,7 @@ function OrderDetailsCard({ order }) {
     <div key={order._id} className="order_card">
       <div className='order_heading'>
         <div className='order_owner'>
+          <p className="orderid">#Order-{order._id.toString().toUpperCase().slice(0, 10)}</p>
           <p className='name'>{order.name}</p>
           <p className='contact'>{order.phno}</p>
           <p className='address'>{order.address}</p>

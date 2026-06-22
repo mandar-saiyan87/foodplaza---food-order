@@ -10,7 +10,7 @@ const { JWT_SECRET } = process.env;
 router.post("", async (req, res) => {
   const currentUser = req.body;
   // console.log(currentUser);
-  if (currentUser.useremail && currentUser.accToken)
+  if (currentUser.useremail && currentUser.accToken) {
     try {
       const user = await Users.findOne({ emailId: currentUser.useremail });
       if (!user) {
@@ -19,13 +19,22 @@ router.post("", async (req, res) => {
           username: currentUser.displayname,
         });
         const user = await newUser.save();
-        return res.status(200).json(user);
+        const token = jwt.sign(
+          { id: user._id, emailId: user.emailId, username: user.username },
+          JWT_SECRET
+        );
+        return res.status(200).json({ user, token });
       }
-      return res.status(200).json(user);
+      const token = jwt.sign(
+        { id: user._id, emailId: user.emailId, username: user.username },
+        JWT_SECRET
+      );
+      return res.status(200).json({ user, token });
     } catch (error) {
       console.error(error);
       return res.status(500).send("Internal server error");
     }
+  }
   else {
     return res.status(400).send("Bad request");
   }

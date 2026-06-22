@@ -1,22 +1,34 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem("userState");
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+const persistedState = loadState();
+
 const initialState = {
-  token: null,
-  dbUser: null,
+  token: persistedState?.token ?? null,
+  dbUser: persistedState?.dbUser ?? null,
   loginstatus: null,
   loading: false,
   error: null,
 };
 
 export const addUser = createAsyncThunk("addUser", async (currentUser) => {
-  // console.log(currentUser);
   const req = await fetch(`${process.env.REACT_APP_API_URL}/api/user`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(currentUser),
   });
   const data = await req.json();
-  // console.log(data);
   return data;
 });
 
@@ -30,7 +42,6 @@ export const adminlogin = createAsyncThunk("adminlogin", async (usercreds) => {
     }
   );
   const data = await req.json();
-  // console.log(data)
   if (data.token) {
     localStorage.setItem("adminToken", JSON.stringify(data.token));
   }
@@ -43,11 +54,20 @@ export const userSlice = createSlice({
   reducers: {
     authSet: (state, action) => {
       const userData = action.payload;
-      state.token = userData;
+      state.token = userData.token || userData.accToken;
+      state.dbUser = userData.user || userData;
+      localStorage.setItem(
+        "userState",
+        JSON.stringify({
+          token: state.token,
+          dbUser: state.dbUser,
+        })
+      );
     },
     unsetAuth: (state) => {
       state.token = null;
       state.dbUser = null;
+      localStorage.removeItem("userState");
     },
     adminLogout: (state) => {
       state.loginstatus = null;
@@ -64,8 +84,16 @@ export const userSlice = createSlice({
       })
       .addCase(addUser.fulfilled, (state, action) => {
         state.loading = false;
-        // console.log(action.payload);
-        state.dbUser = action.payload;
+        state.dbUser = action.payload.user;
+        state.token = action.payload.token;
+        state.error = null;
+        localStorage.setItem(
+          "userState",
+          JSON.stringify({
+            token: state.token,
+            dbUser: state.dbUser,
+          })
+        );
       })
       .addCase(addUser.rejected, (state, action) => {
         state.loading = false;
@@ -77,7 +105,6 @@ export const userSlice = createSlice({
       })
       .addCase(adminlogin.fulfilled, (state, action) => {
         state.loading = false;
-        // console.log(action.payload)
         state.loginstatus = action.payload;
       })
       .addCase(adminlogin.rejected, (state, action) => {
@@ -90,4 +117,3 @@ export const userSlice = createSlice({
 export const { authSet, unsetAuth, adminLogout, clearLoginStatus } =
   userSlice.actions;
 export default userSlice.reducer;
-// export const Token = state => state.auth.token;

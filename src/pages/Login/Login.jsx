@@ -11,18 +11,11 @@ function Login({ showModal }) {
     const res = await signInWithGooglePopup();
     try {
       showModal(false);
-      dispatch(
-        addUser({
-          useremail: res.user.email,
-          displayname: res.user.displayName,
-          accToken: res.user.accessToken,
-        })
-      );
-      authSet({
+      dispatch(addUser({
         useremail: res.user.email,
         displayname: res.user.displayName,
         accToken: res.user.accessToken,
-      });
+      }));
     } catch (error) {
       console.log(error);
     }

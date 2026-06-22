@@ -8,7 +8,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 function UserOrders() {
   const { userid } = useParams();
-  // console.log(userid);
+
   const dispatch = useDispatch();
 
   const allOrders = useSelector((state) => state.cart.orders);
@@ -16,13 +16,12 @@ function UserOrders() {
   // console.log(allOrders);
   const currentPage = useSelector((state) => state.cart.userpage);
   const totalPages = useSelector((state) => state.cart.usertotalPages);
-  // const totalOrderItems = useSelector(
-  //   (state) => state.cart.usertotalOrderItems
-  // );
+  const orderSuccess = useSelector((state) => state.cart.orderSuccess);
+
 
   useEffect(() => {
-    dispatch(getordersCurrentUser({ userid, currentPage }));
-  }, [dispatch]);
+    dispatch(getordersCurrentUser({ userid, currentPage: 1 }));
+  }, [userid, orderSuccess]);
 
   function fetchMoreOrders() {
     if (currentPage < totalPages) {

@@ -71,6 +71,11 @@ router.post("", async (req, res) => {
     });
     const addNewOrder = await newOrder.save();
     console.log(addNewOrder);
+
+    // Emit the new order to the "neworder" room
+    const io = getIo();
+    io.to("neworder").emit("new-order", addNewOrder);
+
     res.status(201).json(addNewOrder);
   } catch (error) {
     console.error(error);
@@ -104,26 +109,63 @@ router.patch("/:orderId", async (req, res) => {
   // console.log("Updates:", updates);
 
   try {
-    let order = await Orders.findById(orderId);
+    let order = await Orders.findById(orderId).populate({
+      path: "cartitems.menuItem",
+      select: "title price",
+    })
+      .populate({
+        path: "user",
+        select: "emailId username",
+      });
     if (!order) {
       return res.status(404).send("Order not found");
     }
 
     // Update only the fields that are present in the request body
-    if (order.status !== "delivered") {
+    if (order.status !== "delivered" && order.status !== "cancelled") {
 
       Object.keys(updates).forEach(key => {
         order[key] = updates[key];
       });
 
       const updatedOrder = await order.save();
-
       // Emmit real-time update
       const io = getIo();
       io.to(`order-${orderId}`).emit("order-updated", {
         orderid: updatedOrder._id,
         status: updatedOrder.status
       });
+
+
+      // To call n8n api
+      if (["accepted", "delivered", "cancelled"].includes(updatedOrder.status)) {
+        // const itemsOrdered = order.cartitems.map((item) =>
+        //   `${item.qty}x ${item.menuItem.title}`
+        // ).join(", ")
+
+        const emailData = {
+          "orderId": order._id.toString().toUpperCase().slice(0, 10),
+          "customerName": order.user.username,
+          "customerEmail": order.user.emailId,
+          "itemsOrdered": order.cartitems,
+          "totalAmount": `$${order.totalAmount}`,
+          "status": order.status
+        }
+        // console.log(emailData)
+        fetch(`http://localhost:5678/webhook/order-placed`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(emailData),
+        })
+          .then((res) => {
+            if (!res.ok) console.error("n8n webhook failed:", res.status)
+            else console.log("n8n webhook triggered successfully")
+          })
+          .catch((error) => console.error("n8n webhook failed:", error.message))
+      }
+
 
       return res.status(200).json(updatedOrder);
     }
