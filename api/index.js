@@ -7,6 +7,10 @@ import orderroutes from './routes/order_routes.js'
 import dns from 'dns'
 import http from 'http'
 import { initSocket } from './socket.js'
+import startN8nHeartBeat from './utils/n8nconnection.js'
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 dns.setServers(['8.8.8.8', '8.8.4.4'])
 
@@ -28,6 +32,10 @@ app.use('/api/orders', orderroutes)
 
 server.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}`)
+
+  if (process.env.N8N_WEBHOOK_URL_PROD) {
+    startN8nHeartBeat()
+  }
 })
 
 

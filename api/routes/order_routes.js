@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const N8N_WEBHOOK_URL_TEST = process.env.N8N_WEBHOOK_URL_TEST;
+// const N8N_WEBHOOK_URL_TEST = process.env.N8N_WEBHOOK_URL_TEST;
 const N8N_WEBHOOK_URL_PROD = process.env.N8N_WEBHOOK_URL_PROD;
 
 const router = express.Router();
@@ -158,7 +158,7 @@ router.patch("/:orderId", async (req, res) => {
           "status": order.status
         }
         // console.log(emailData)
-        fetch(`${N8N_WEBHOOK_URL_PROD}`, {
+        fetch(`${N8N_WEBHOOK_URL_PROD}/webhook/order-placed`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
