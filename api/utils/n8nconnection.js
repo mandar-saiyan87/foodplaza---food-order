@@ -45,7 +45,7 @@ function startN8nHeartBeat() {
 
     heartbeatTimer = setInterval(async () => {
         sendPing()
-    }, 600000)
+    }, 300000)
 
 }
 

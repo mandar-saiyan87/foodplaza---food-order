@@ -76,7 +76,7 @@ router.post("", async (req, res) => {
       phno: phone,
     });
     const addNewOrder = await newOrder.save();
-    console.log(addNewOrder);
+    // console.log(addNewOrder);
 
     // Emit the new order to the "neworder" room
     const io = getIo();
