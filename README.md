@@ -13,6 +13,7 @@ Check out the live app: [Food Order App](https://foodplaza-ten.vercel.app)
 - **React**: Frontend library for building the user interface.
 - **Node.js**: Runtime environment for executing server-side JavaScript.
 - **Redux Toolkit**: State management for handling application state.
+- **n8n**: Workflow automation platform used to handle real-time email notifications and the post-delivery review pipeline.
 
 ## Features
 
@@ -22,6 +23,7 @@ Check out the live app: [Food Order App](https://foodplaza-ten.vercel.app)
 - **Order History**: Users can view their past orders and reorder their favorite dishes.
 - **Admin Panel**: Admins have access to a special panel to add new dishes and categories.
 - **Order Status**: Users can track the status of their orders in real-time.
+- **Automated Order Updates & Reviews (via n8n)**: Triggers instant email notifications for status changes (Accepted, Cancelled, Delivered). "Delivered" emails include an interactive review form that automatically logs user feedback into Excel.
 
 ## Usage
 
