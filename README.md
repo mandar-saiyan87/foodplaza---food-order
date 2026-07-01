@@ -27,9 +27,13 @@ Check out the live app: [Food Order App](https://foodplaza-ten.vercel.app)
 
 ## Important Note
 
-- The backend server, **n8n**, and the database used by **n8n** are hosted on free-tier services.
-- If the application has been inactive for a while, these services may need to wake up before responding.
-- Please allow **2–3 minutes** for the initial request. Startup time may vary slightly depending on hosting provider traffic and resource availability.
+> **Free Hosting Notice**
+>
+> The backend server, **n8n** workflow service, and the database used by **n8n** are hosted on free-tier services. After a few minutes of inactivity, these services automatically spin down to conserve resources.
+>
+> When accessing the application after it has been idle, the first request may take **2–3 minutes** while the services wake up. Depending on current traffic and the hosting provider's resource allocation, startup time may occasionally be slightly longer.
+>
+> Thank you for your patience while exploring the project.
 
 ## Usage
 
