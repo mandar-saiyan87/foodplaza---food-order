@@ -17,7 +17,7 @@ Check out the live app: [Food Order App](https://foodplaza-ten.vercel.app)
 
 ## Features
 
-- **User Login with Google account**: Users can log in using their goggle account for secure authentication.
+- **User Login with Google account**: Users can log in using their google account for secure authentication.
 - **Add to Cart**: Users can add dishes to their cart for ordering.
 - **Browse Dishes by Category**: Users can easily browse dishes categorized for convenience.
 - **Order History**: Users can view their past orders and reorder their favorite dishes.
@@ -25,9 +25,19 @@ Check out the live app: [Food Order App](https://foodplaza-ten.vercel.app)
 - **Order Status**: Users can track the status of their orders in real-time.
 - **Automated Order Updates & Reviews (via n8n)**: Triggers instant email notifications for status changes (Accepted, Cancelled, Delivered). "Delivered" emails include an interactive review form that automatically logs user feedback into Excel.
 
+## Important Note
+
+> **Free Hosting Notice**
+>
+> The backend server, **n8n** workflow service, and the database used by **n8n** are hosted on free-tier services. After a few minutes of inactivity, these services automatically spin down to conserve resources.
+>
+> When accessing the application after it has been idle, the first request may take **2–3 minutes** while the services wake up. Depending on current traffic and the hosting provider's resource allocation, startup time may occasionally be slightly longer.
+>
+> Thank you for your patience while exploring the project.
+
 ## Usage
 
-1. **User Login**: Sign In using your gmail account.
+1. **User Login**: Sign In using your google account.
 2. **Browse Dishes**: Explore various dishes organized by categories.
 3. **Add to Cart**: Select dishes and add them to your cart.
 4. **Place Order**: Review your cart and place an order.
